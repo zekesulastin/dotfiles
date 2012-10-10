@@ -1,0 +1,6 @@
+# Write your default config options here!
+
+vo=xv
+ao=pulse
+lavdopts=threads=4
+
