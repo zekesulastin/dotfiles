@@ -7,6 +7,6 @@ This should be able to be cloned right into ~; ignores are set in ~/.git/info/ex
 
 Notably included is:
 bash
-i3
+i3 (won't work w/o separatorless i3bar)
 termite
 w/e else you see
