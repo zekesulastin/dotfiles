@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+# Source this in your .bashrc!
+
+# udl - udisks-list
+# Lists available non-fixed drives; set the appropriate ignored devices for your system in [^ab]
+# Returns a list in the following format:
+#
+# xy: Label (Mount status)
+# 
+# i.e.
+#
+# (dark blue) cd: OFFICE12			Optical drive w/ disk label OFFICE12, not mounted
+# (bold green) d1: ZSCruzer			Partition /dev/sdd1 w/ partition label ZSCruzer, mounted
+udl () {
+	local EMC="\e[0;36m" EMG="\e[1;32m" NONE="\e[0m"
+	local _symlink="" _device="" trimdev="" _mounted=""
+	local _parsed=( )
+	for _symlink in /dev/disk/by-label/*; do
+		_device=$(readlink "${_symlink}" | cut -b 7-10)
+   		if [[ $_device =~ sr ]]; then _trimdev="cd"; else _trimdev="${_device:2:2}"; fi
+		_label="${_symlink##*/}"
+		if [[ -d /media/$_label ]]; then _mounted="$EMG"; else _mounted="$EMC"; fi
+		if [[ $_device =~ s[r0]|d[^ab] ]]; then _parsed+=("$_mounted$_trimdev:$NONE $_label"); fi
+	done
+	if [[ $_parsed == "" ]]; then echo "No removable devices found."; else printf "%b\n" "${_parsed[@]}"; fi
+}
+
+# udm - udisks-mount
+# Mounts a drive, given "cd" for the optical drive, "d1" or similar for a block device,
+# 	or the partition label.
+udm () {
+	if [[ $1 == "cd" ]]; then
+		udisks --mount /dev/sr0;
+	elif [[ $1 == ?? ]]; then
+		udisks --mount /dev/sd$@;
+	else
+		udisks --mount /dev/disk/by-label/$@;
+	fi
+}
+
+# udu - udisks-unmount
+# Unmounts a drive, given "cd" for the optical drive, "d1" or similar for a block device,
+#	or the partition label.
+udu () {
+	if [[ $1 == cd ]]; then
+		udisks --unmount /dev/sr0;
+	elif [[ $1 == ?? ]]; then
+		udisks --unmount /dev/sd$@;
+	else
+		udisks --unmount /dev/disk/by-label/$@;
+	fi
+}
+
+# ude - udisks-eject
+# Fully ejects a drive, given "cd" for the optical drive, "d1" or similar for a block device,
+#	"d" or similar for a block device, or the partition label.
+#	All partitions must be unmounted or --eject will fail.
+ude () {
+	local _device="" part=""
+	if [[ $1 == "cd" ]]; then
+		udisks --eject /dev/sr0;
+	elif [[ $1 == ?? ]]; then
+		_part=$(echo $1 | cut -b 1)
+		udisks --eject /dev/sd$_part;
+	elif [[ $1 == ? ]]; then
+		udisks --eject /dev/sd$1;
+	else
+		_device=$(readlink /dev/disk/by-label/$1 | cut -b 7-9)
+		udisks --eject /dev/$_device;		
+	fi
+}

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+alias sstatus="systemctl status"
+alias sstart="sudo systemctl start"
+alias sstop="sudo systemctl stop"
+alias senable="sudo systemctl enable"
+alias sdisable="sudo systemctl disable"
+alias sreload="sudo systemctl reload"
+alias sdaemonreload="sudo systemctl --system daemon-reload"

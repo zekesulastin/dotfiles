@@ -1,0 +1,16 @@
+out_to_x no
+out_to_console yes
+total_run_times 0
+update_interval 1
+mpd_host 192.168.1.101
+if_up_strictness address
+lua_load /home/zekesulastin/.config/i3/i3bar.lua
+lua_startup_hook init
+template0 #
+# Launched by "conkyi3bar" which adds the opening of the json
+# mpd_status must be called in .conkyrc or it fails to update, so
+# I stuck it in an emtpy block at the beginning of the json :D
+TEXT
+[{"full_text":"","instance":"${mpd_status}"},\
+{"full_text":"["},${lua mpd},{"full_text":"]["},${lua net},${lua cpu},${lua ram},${lua pvu},\
+{"full_text":"]["},{"full_text":"${time %a, %b %d} ${time %H:%M}"},{"full_text":"]"}],
