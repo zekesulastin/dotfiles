@@ -2,7 +2,7 @@
 
 #.xinitrc! X server settings!
 
-if [[ `cat /etc/hostname` == tsukiakari ]]; then
+if [[ $HOSTNAME == tsukiakari ]]; then
 	nvidia-settings -l &
 fi
 
