@@ -44,7 +44,7 @@ else
 		let g:Powerline_symbols = 'fancy'
 		let g:Powerline_colorscheme = 'default'
 	else
-		set t_Co=16
+		set t_Co=8
 		set bg=dark
 		let g:Powerline_symbols = 'compatible'
 		let g:Powerline_colorscheme = 'default'
