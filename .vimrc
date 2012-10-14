@@ -40,6 +40,7 @@ else
 		let g:zenburn_high_Contrast=1
 		colorscheme zenburn
 		highlight Comment cterm=italic
+		" Both use cases for this $TERM have a powerlined font installed
 		let g:Powerline_symbols = 'fancy'
 		let g:Powerline_colorscheme = 'default'
 	else
