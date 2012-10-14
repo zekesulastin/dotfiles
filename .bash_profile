@@ -2,4 +2,6 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-[[ $(fgconsole) = 1 ]] && exec startx -- vt1
+if [[ $(fgconsole) = 1 ]] && [[ `cat /etc/hostname` != hoshiakari ]]; then
+	exec startx -- vt1
+fi
