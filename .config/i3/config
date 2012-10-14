@@ -14,7 +14,7 @@ set $white	#ffffff
 set $red	#cc0000
 
 # font for window titles. ISO 10646 = Unicode
-font -*-tamzen-medium-r-*-*-14-*-*-*-*-*-*-*
+font -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*
 #font xft:PragmataPro 8
 
 # Border style
@@ -140,7 +140,7 @@ bar {
 	tray_output DVI-D-0
 	position top
 #	font xft:PragmataPro for Powerline 8
-	font -*-tamzen-medium-r-*-*-14-*-*-*-*-*-*-*
+	font -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*
 	colors {
 		background $black
 		statusline $bgrey
