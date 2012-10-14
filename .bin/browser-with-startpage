@@ -11,11 +11,12 @@ cat << EOF > /tmp/fortune_page.html
 			top: 35%;
 			left: 10%;
 			right: 10%;
-			font-family: PragmataPro,monospace;
+			font-family: monospace;
 			color:#aaaaaa;
 			background-color:#1a1a1a;
 		}
 	</style>
+</head>
 <body>
 $_fortune
 </body>
