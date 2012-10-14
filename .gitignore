@@ -1,4 +1,11 @@
 # It's a gitignore - pretty self-explanatory.
+# 
+# It begins by ignoring everything then unignoring dotfiles.
+# 	Everything afterwards is merely adding ignores back to
+#	the filter.
+#
+# Doing it this way allows me to see any new dotfiles with
+#	git status.
 
 *
 !.*
