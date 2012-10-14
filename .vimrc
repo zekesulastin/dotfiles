@@ -34,21 +34,28 @@ if has('gui_running')
 	let g:Powerline_symbols = 'fancy'
 	let g:Powerline_colorscheme = 'default'
 	set guifont=PragmataPro\ for\ Powerline\ 10
-else
-	if $TERM =~ 'xterm-termite' || $TERM =~ 'screen-256color'
+elseif $TERM =~ 'xterm-termite'
 		set t_Co=256
 		let g:zenburn_high_Contrast=1
 		colorscheme zenburn
 		highlight Comment cterm=italic
-		" Both use cases for this $TERM have a powerlined font installed
 		let g:Powerline_symbols = 'fancy'
 		let g:Powerline_colorscheme = 'default'
-	else
+elseif $TERM =~ 'screen-256color'
+		set t_Co=256
+		let g:zenburn_high_Contrast=1
+		colorscheme zenburn
+		highlight Comment cterm=italic
+		"I want my damn italics, even in tmux.
+		set t_so=[7m
+		set t_ZH=[3m
+		let g:Powerline_symbols = 'fancy'
+		let g:Powerline_colorscheme = 'default'
+else
 		set t_Co=8
 		set bg=dark
 		let g:Powerline_symbols = 'compatible'
 		let g:Powerline_colorscheme = 'default'
-	endif
 endif
 
 command W w !sudo tee % > /dev/null
