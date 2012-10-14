@@ -3,15 +3,34 @@
 ## ~/.ncmpcpp/config and set up your preferences  ##
 ####################################################
 #
+##### directories ######
+##
+## Directory for storing ncmpcpp related files.
+## Changing it is useful if you want to store
+## everything somewhere else and provide command
+## line setting for alternative location to config
+## file which defines that while launching ncmpcpp.
+##
+#
+ncmpcpp_directory = "~/.ncmpcpp"
+#
+##
+## Directory for storing downloaded lyrics. It
+## defaults to ~/.lyrics since other MPD clients
+## (eg. ncmpc) also use that location.
+##
+#
+lyrics_directory = "~/.ncmpcpp/lyrics"
+#
 ##### connection settings #####
 #
 ## set it in order to make tag editor and renaming files work properly
 #
-mpd_host = "192.168.1.101"
+mpd_host = "/var/lib/mpd/socket"
 #
 #mpd_port = "6600"
 #
-#mpd_music_dir = ""
+mpd_music_dir = "/mnt/alpha/Music"
 #
 #mpd_connection_timeout = "5"
 #
@@ -23,18 +42,25 @@ mpd_host = "192.168.1.101"
 ##
 ## Note: In order to make music visualizer work you'll
 ## need to use mpd fifo output, whose format parameter
-## has to be set to 44100:16:1. Example configuration:
-## (it has to be put into mpd.conf)
+## has to be set to 44100:16:1 for mono visualization
+## or 44100:16:2 for stereo visualization. Example
+## configuration (it has to be put into mpd.conf):
 ##
 ## audio_output {
 ##        type            "fifo"
 ##        name            "My FIFO"
 ##        path            "/tmp/mpd.fifo"
-##        format          "44100:16:1"
+##        format          "44100:16:2"
 ## }
 ##
 #
-visualizer_fifo_path = "/home/zekesulastin/mpd.fifo"
+##
+## If you set format to 44100:16:2, make it 'yes'.
+##
+#
+visualizer_in_stereo = "yes"
+#
+visualizer_fifo_path = "/tmp/mpd.fifo"
 #
 ##
 ## Note: Below parameter is needed for ncmpcpp
@@ -61,7 +87,9 @@ visualizer_output_name = "FIFO Data for Visualization"
 ## you need to compile ncmpcpp with fftw3 support.
 ##
 #
-#visualizer_type = "wave" (spectrum/wave)
+visualizer_type = "spectrum" (spectrum/wave)
+#
+visualizer_look = "•┃"
 #
 ##### system encoding #####
 ##
@@ -101,7 +129,7 @@ visualizer_output_name = "FIFO Data for Visualization"
 ## %A - album artist
 ## %t - title
 ## %b - album
-## %y - year
+## %y - date
 ## %n - track number (01/12 -> 01)
 ## %N - full track info (01/12 -> 01/12)
 ## %g - genre
@@ -109,6 +137,7 @@ visualizer_output_name = "FIFO Data for Visualization"
 ## %p - performer
 ## %d - disc
 ## %C - comment
+## %P - priority
 ## $R - begin right alignment
 ##
 ## you can also put them in { } and then it will be displayed
@@ -151,6 +180,17 @@ visualizer_output_name = "FIFO Data for Visualization"
 #tag_editor_album_format = "{(%y) }%b"
 #
 ##
+## Note: Below variables are used for sorting songs in browser.
+## The sort mode determines how songs are sorted, and can be used
+## in combination with a sort format to specify a custom sorting format.
+## Possible values for browser_sort_mode are "name", "mtime" and "format".
+##
+#
+#browser_sort_mode = "name"
+#
+#browser_sort_format = "{%a - }{%t}|{%f} {(%l)}"
+#
+##
 ## Note: Below variables are for alternative version of user's interface.
 ## Their syntax supports all tags and colors listed above plus some extra
 ## markers used for text attributes. They are followed by character '$'.
@@ -185,6 +225,8 @@ visualizer_output_name = "FIFO Data for Visualization"
 #selected_item_prefix = "$6"
 #
 #selected_item_suffix = "$9"
+#
+#modified_item_prefix = "$3> $9"
 #
 ## colors are not supported for below variable
 #
@@ -251,6 +293,8 @@ playlist_display_mode = "columns" (classic/columns)
 #
 #search_engine_display_mode = "classic" (classic/columns)
 #
+#playlist_editor_display_mode = "classic" (classic/columns)
+#
 #discard_colors_if_item_is_selected = "yes"
 #
 #incremental_seeking = "yes"
@@ -265,7 +309,11 @@ playlist_display_mode = "columns" (classic/columns)
 ## Note: You can specify third character which will
 ## be used to build 'empty' part of progressbar.
 ##
-#progressbar_look = "=>"
+#progressbar_look = "▓▒░"
+progressbar_look = "═╍╌"
+#progressbar_look = "─┤ "
+#
+progressbar_boldness = "no"
 #
 #default_place_to_search_in = "database" (database/playlist)
 #
@@ -276,8 +324,6 @@ media_library_left_column = "g" (possible values: a,y,g,c,p, legend above)
 #default_find_mode = "wrapped" (wrapped/normal)
 #
 #default_space_mode = "add" (add/select)
-#
-#default_tag_editor_left_col = "albums" (albums/dirs)
 #
 #default_tag_editor_pattern = "%n - %t"
 #
@@ -342,6 +388,15 @@ media_library_left_column = "g" (possible values: a,y,g,c,p, legend above)
 screen_switcher_mode = "sequence: 2 -> 5"
 #
 ##
+## Default width of locked screen (in %).
+## Acceptable values are from 20 to 80.
+##
+#
+#locked_screen_width_part = "50"
+#
+#ask_for_locked_screen_width_part = "yes"
+#
+##
 ## Note: You can define startup screen for ncmpcpp
 ## by choosing screen number from the list above.
 ##
@@ -351,13 +406,13 @@ screen_switcher_mode = "sequence: 2 -> 5"
 #
 #ask_before_clearing_main_playlist = "no"
 #
-#clock_display_seconds = "no"
+clock_display_seconds = "yes"
 #
 #display_volume_level = "yes"
 #
 #display_bitrate = "no"
 #
-#display_remaining_time = "no"
+display_remaining_time = "no"
 #
 #regular_expressions = "basic" (basic/extended)
 #
@@ -366,7 +421,7 @@ screen_switcher_mode = "sequence: 2 -> 5"
 ## "The" word while sorting items in browser, tags in
 ## media library, etc.
 ##
-#ignore_leading_the = "no"
+ignore_leading_the = "yes"
 #
 #block_search_constraints_change_if_items_found = "yes"
 #
@@ -376,13 +431,11 @@ screen_switcher_mode = "sequence: 2 -> 5"
 #
 #empty_tag_marker = "<empty>"
 #
+#tags_separator = " | "
+#
 #tag_editor_extended_numeration = "no"
 #
-media_library_display_date = "no"
-#
-#media_library_display_empty_tag = "yes"
-#
-#media_library_disable_two_column_mode = "no"
+#media_library_sort_by_mtime = "no"
 #
 #enable_window_title = "yes"
 #
@@ -399,16 +452,6 @@ media_library_display_date = "no"
 ##
 #
 #search_engine_default_search_mode = "1"
-#
-##
-## Note: Below variables can allow you to physically
-## remove files and directories from your hdd using
-## ncmpcpp's browser screen.
-##
-#
-#allow_physical_files_deletion = "no"
-#
-#allow_physical_directories_deletion = "no"
 #
 #external_editor = ""
 #
@@ -428,7 +471,7 @@ media_library_display_date = "no"
 #
 #state_flags_color = "default"
 #
-#main_window_color = "yellow"
+main_window_color = "yellow"
 #
 #color1 = "white"
 #
@@ -436,7 +479,9 @@ media_library_display_date = "no"
 #
 #main_window_highlight_color = "yellow"
 #
-#progressbar_color = "default"
+progressbar_color = "yellow"
+#
+progressbar_elapsed_color = "yellow"
 #
 #statusbar_color = "default"
 #
@@ -444,7 +489,7 @@ media_library_display_date = "no"
 #
 #active_column_color = "red"
 #
-#visualizer_color = "yellow"
+visualizer_color = "green"
 #
 #window_border_color = "green"
 #
