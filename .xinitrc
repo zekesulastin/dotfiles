@@ -6,8 +6,8 @@ if [[ $HOSTNAME == tsukiakari ]]; then
 	nvidia-settings -l &
 fi
 
-xset +fp /usr/share/fonts/local &
-xset +fp /home/zekesulastin/.fonts &
+xset fp+ /usr/share/fonts/local &
+xset fp+ /home/zekesulastin/.fonts &
 xset fp rehash &
 xset b off &
 xrandr --dpi 96 &
