@@ -2,7 +2,6 @@
 
 loadplugins '\.(js|penta)$'
 group user
-set guioptions=Crs
 set hintkeys=asdfg;lkjh
 colorscheme zenburn
 
