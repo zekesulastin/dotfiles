@@ -17,4 +17,7 @@ alias ix="curl -sF 'f:1=<-' http://ix.io"
 alias fluidstart="(nohup fluidsynth -is -a pulseaudio -r 44100 soundfont-unison /usr/share/soundfonts/Unison.sf2 >/dev/null 2>&1 &)"
 alias fluidstop="pkill fluidsynth"
 alias midiplay="aplaymidi --port 128:0"
-alias ncmpcpp="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp'"
+
+if [[ $HOSTNAME != hoshiakari ]]; then
+	alias ncmpcpp="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp'" ;
+fi
