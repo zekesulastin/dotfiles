@@ -157,7 +157,7 @@ bar {
 bindsym $mod+F2 exec "xlock"
 
 # Firefox
-bindsym $mod+Ctrl+w exec firefox
+bindsym $mod+Ctrl+w exec browser-with-startpage
 
 # Pavucontrol
 bindsym $mod+Ctrl+v exec pavucontrol
