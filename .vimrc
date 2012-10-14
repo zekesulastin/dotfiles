@@ -33,7 +33,7 @@ if has('gui_running')
 	colorscheme zenburn
 	let g:Powerline_symbols = 'fancy'
 	let g:Powerline_colorscheme = 'default'
-	set guifont=PragmataPro\ for\ Powerline\ 12
+	set guifont=PragmataPro\ for\ Powerline\ 10
 else
 	if $TERM =~ 'xterm-termite' || $TERM =~ 'screen-256color'
 		set t_Co=256
