@@ -2,7 +2,7 @@
 
 _fortune=`fortune -a`
 
-cat << EOF > /tmp/fortune_page.html
+cat << EOF > /tmp/fortune.html
 <html>
 <head>
 	<style media="screen" type="text/css">
@@ -23,4 +23,4 @@ $_fortune
 </html>
 EOF
 
-exec $BROWSER /tmp/fortune_page.html
+exec $BROWSER /tmp/fortune.html
