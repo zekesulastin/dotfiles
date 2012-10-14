@@ -1,0 +1,9 @@
+"hg6825
+
+loadplugins '\.(js|penta)$'
+group user
+set guioptions=bCrsn
+set hintkeys=asdfg;lkjh
+colorscheme zenburn
+
+" vim: set ft=pentadactyl:
