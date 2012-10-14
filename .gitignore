@@ -33,9 +33,12 @@
 .scummvmrc
 .zcompdump
 .wine
+.error
+.ncmpcpp/patterns.list
 !.bin/*
 !.ncmpcpp/*
 .ncmpcpp/error.log
+.ncmpcpp/patterns.list
 !.config/*
 !.config/*/*
 .config/Mumble
@@ -69,6 +72,9 @@
 .config/pavucontrol.ini
 .config/user-dirs.dirs
 .config/user-dirs.locale
+.config/meat
+.config/rtorrent
+.config/tmux-powerline
 !.vim/*
 !.vim/*/*
 .vim/doc
