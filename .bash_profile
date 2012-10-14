@@ -2,6 +2,8 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-if [[ $(fgconsole) = 1 ]] && [[ `cat /etc/hostname` != hoshiakari ]]; then
+. $XDG_CONFIG_HOME/environment
+
+if [[ $(fgconsole) = 1 ]] && [[ $HOSTNAME != hoshiakari ]]; then
 	exec startx -- vt1
 fi

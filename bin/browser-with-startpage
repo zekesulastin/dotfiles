@@ -22,4 +22,4 @@ $_fortune
 </html>
 EOF
 
-exec firefox /tmp/fortune_page.html
+exec $BROWSER /tmp/fortune_page.html
