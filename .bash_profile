@@ -4,6 +4,6 @@
 
 . $XDG_CONFIG_HOME/environment
 
-if [[ $(fgconsole) = 1 ]] && [[ $HOSTNAME != hoshiakari ]]; then
+if [[ $HOSTNAME != hoshiakari ]] && [[ $(fgconsole) == 1 ]]; then
 	exec startx -- vt1
 fi
