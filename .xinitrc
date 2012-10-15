@@ -3,9 +3,9 @@
 #.xinitrc! X server settings!
 
 if [[ $HOSTNAME == tsukiakari ]]; then
-	nvidia-settings -l &
+	nvidia-settings -l
 elif [[ $HOSTNAME == meiousei ]]; then
-	urxvtd -q -o -f &
+	urxvtd -q -o -f
 fi
 
 xset fp+ /usr/share/fonts/local,/home/zekesulastin/.fonts &

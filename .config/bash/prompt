@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 bash_prompt() {
-  case $TERM in
-    @(xterm|rxvt)*)
-    PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s>%s:%s\007" "${HOSTNAME%%.*}" "${USER}" "${PWD/#$HOME/~}"' ;; screen)
-  esac
+  PROMPT_COMMAND='printf "\033]0;%s>%s:%s\007" "${HOSTNAME%%.*}" "${USER}" "${PWD/#$HOME/~}"'
 
   local NONE="\[\e[0m\]"    # unsets color to term's fg color
 
@@ -30,7 +27,6 @@ bash_prompt() {
 }
 
 # show return val of last command
-PROMPT_COMMAND='RET=$?'
 GIT_PS1_SHOWDIRTYSTATE=yes
 bash_prompt
 unset bash_prompt
