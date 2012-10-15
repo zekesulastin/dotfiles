@@ -2,11 +2,9 @@
 
 bash_prompt() {
   case $TERM in
-	xterm*);;
-	rxvt*);;
-	screen*)
+	xterm*|rxvt*)
 	PROMPT_COMMAND='printf "\033]0;%s>%s:%s\007" "${HOSTNAME%%.*}" "${USER}" "${PWD/#$HOME/~}"' ;;
-	*)
+	*);;
   esac
 
   local NONE="\[\e[0m\]"    # unsets color to term's fg color
