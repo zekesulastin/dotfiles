@@ -9,7 +9,7 @@
 . $XDG_CONFIG_HOME/bash/alias
 . $XDG_CONFIG_HOME/bash/udisks
 . $XDG_CONFIG_HOME/bash/systemd_alias
-. $XDG_CONFIG_HOME/git-prompt.sh
+. $XDG_CONFIG_HOME/bash/git-prompt
 . $XDG_CONFIG_HOME/bash/infinality-settings
 . $XDG_CONFIG_HOME/bash/prompt
 
