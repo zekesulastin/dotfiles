@@ -1,0 +1,58 @@
+! ----------------------------------------------------------------------------
+! file:     ~/.Xresources
+! author:  ZekeSulastin 
+! modified: 09 Aug 11
+! vim:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
+! ----------------------------------------------------------------------------
+
+Xft.dpi: 96
+Xft.rgba: rgb
+
+!URxvt.font: xft:PragmataPro for Powerline:pixelsize=13:antialias=true
+
+URxvt.font: -Misc-TamzenPL-Medium-R-Normal--14-101-100-100-C-70-ISO10646-1
+URxvt.boldFont: -Misc-TamzenPL-Bold-R-Normal--14-101-100-100-C-70-ISO10646-1
+URxvt.italicFont: -*-tamzen-medium-i-*-*-14-*-*-*-*-*-*-*
+URxvt.bolditalicFont: -*-tamzen-bold-i-*-*-14-*-*-*-*-*-*-*
+
+urxvt.scrollBar: off
+urxvt.inheritPixmap: true
+urxvt.transparent: true
+urxvt.shading: 25 
+
+*foreground: #aaaaaa
+*background: #000000
+
+! black
+*color0            : #2E3436
+*color8            : #555753
+! red
+*color1            : #CC0000
+*color9            : #EF2929
+! green
+*color2            : #4E9A06
+*color10           : #8AE234
+! yellow
+*color3            : #C4A000
+*color11           : #FCE94F
+! blue
+*color4            : #3465A4
+*color12           : #729FCF
+! magenta
+*color5            : #75507B
+*color13           : #AD7FA8
+! cyan
+*color6            : #06989A
+*color14           : #34E2E2
+! white
+*color7            : #D3D7CF
+*color15           : #EEECEC
+
+URxvt.perl-ext-common:      default,url-select,bell-command
+URxvt.keysym.M-u:    perl:url-select:select_next
+URxvt.url-select.button:     2
+URxvt.url-select.launcher:   /usr/bin/firefox
+URxvt.url-select.underline: true
+URxvt.bell-command: paplay --property=media.role=event /home/zekesulastin/.pulse/chimes.wav
+
+XLock.font:     -sony-fixed-medium-r-*-*-24-*-*-*-*-*-*-*

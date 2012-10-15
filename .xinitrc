@@ -4,11 +4,14 @@
 
 if [[ $HOSTNAME == tsukiakari ]]; then
 	nvidia-settings -l &
+elif [[ $HOSTNAME == meiousei ]]; then
+	urxvtd -q -o -f &
 fi
 
 xset fp+ /usr/share/fonts/local,/home/zekesulastin/.fonts &
 xset fp rehash &
 xset b off &
+xrdb -merge ~/.Xresources
 xrandr --dpi 96 &
 nitrogen --restore &
 start-pulseaudio-x11 &

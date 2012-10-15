@@ -11,7 +11,6 @@
 !.*
 .ICEauthority
 .Xauthority
-.Xresources
 .bash_history
 .bzr.log
 .classpath
