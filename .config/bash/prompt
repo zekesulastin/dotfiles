@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
 bash_prompt() {
-  PROMPT_COMMAND='printf "\033]0;%s>%s:%s\007" "${HOSTNAME%%.*}" "${USER}" "${PWD/#$HOME/~}"'
+  case $TERM in
+	xterm*);;
+	rxvt*);;
+	screen*)
+	PROMPT_COMMAND='printf "\033]0;%s>%s:%s\007" "${HOSTNAME%%.*}" "${USER}" "${PWD/#$HOME/~}"' ;;
+	*)
+  esac
 
   local NONE="\[\e[0m\]"    # unsets color to term's fg color
 
