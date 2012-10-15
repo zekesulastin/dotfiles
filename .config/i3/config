@@ -36,7 +36,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec "dmenu_run -fn Tamzen-14"
+bindsym $mod+d exec "dmenu_run -fn TamzenPL-14"
 
 # change focus
 bindsym $mod+h focus left

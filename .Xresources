@@ -12,8 +12,8 @@ Xft.rgba: rgb
 
 URxvt.font: -Misc-TamzenPL-Medium-R-Normal--14-101-100-100-C-70-ISO10646-1
 URxvt.boldFont: -Misc-TamzenPL-Bold-R-Normal--14-101-100-100-C-70-ISO10646-1
-URxvt.italicFont: -*-tamzen-medium-i-*-*-14-*-*-*-*-*-*-*
-URxvt.bolditalicFont: -*-tamzen-bold-i-*-*-14-*-*-*-*-*-*-*
+URxvt.italicFont: -Misc-TamzenPL-Medium-I-Normal--14-101-100-100-C-70-ISO10646-1
+URxvt.bolditalicFont: -Misc-TamzenPL-Bold-I-Normal--14-101-100-100-C-70-ISO10646-1
 
 urxvt.scrollBar: off
 urxvt.inheritPixmap: true
