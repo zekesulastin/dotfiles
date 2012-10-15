@@ -1,0 +1,5 @@
+#/usr/bin/env sh
+
+echo '{"version":1}'
+echo '['
+exec conky -c ~/.config/i3/i3bar.conkyrc 2>/dev/null
