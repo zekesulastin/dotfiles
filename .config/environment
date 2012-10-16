@@ -8,7 +8,7 @@ export GTK2_RC_FILES=$HOME/.config/gtk-2.0/gtkrc-2.0
 export SDL_JOYSTICK_DEVICE=/dev/input/js0
 
 if [[ $HOSTNAME == meiousei ]]; then
-	export TERMINAL=urxvtc ;
+	export TERMINAL=urxvt ;
 else
 	export TERMINAL=termite ;
 fi

@@ -2,14 +2,10 @@
 
 #.xinitrc! X server settings!
 
-if [[ $HOSTNAME == tsukiakari ]]; then
-	nvidia-settings -l
-elif [[ $HOSTNAME == meiousei ]]; then
-	urxvtd -q -o -f
-fi
 
-xset fp+ /usr/share/fonts/local,/home/zekesulastin/.fonts &
-xset fp rehash &
+nvidia-settings -l
+xset fp+ /home/zekesulastin/.fonts
+xset fp rehash
 xset b off &
 xrdb -merge ~/.Xresources
 xrandr --dpi 96 &

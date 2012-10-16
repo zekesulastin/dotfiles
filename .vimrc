@@ -34,7 +34,7 @@ if has('gui_running')
 	let g:Powerline_symbols = 'fancy'
 	let g:Powerline_colorscheme = 'default'
 	set guifont=PragmataPro\ for\ Powerline\ 10
-elseif $TERM =~ 'xterm-termite'
+elseif $TERM =~ 'xterm-termite' || $TERM =~ 'rxvt-unicode-256color'
 		set t_Co=256
 		let g:zenburn_high_Contrast=1
 		colorscheme zenburn
