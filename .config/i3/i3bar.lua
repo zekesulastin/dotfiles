@@ -46,6 +46,7 @@ end
 
 function conky_init()
 	conky_parse("${wireless_bitrate wlan0}${cpu cpu0}${memperc}${mpd_title}${mpd_artist}${mpd_status}")
+	conky_parse("${if_up eth0}${endif}${if_up wlan0}${endif}")
 end
 
 function conky_mpd()
@@ -62,11 +63,16 @@ function conky_mpd()
 end
 
 function conky_net()
+	eth_status = conky_parse("${if_up eth0}E${endif}")
+	wifi_status = conky_parse("${if_up wlan0}W${endif}")
 	wifi_bitrate = conky_parse("${wireless_bitrate wlan0}")
-	if wifi_bitrate == "" then
-		return '{"full_text":"W","color":"'..bgrey..'"}'
-	else
+
+	if eth_status == "E" then
+		return '{"full_text":"E","color":"'..green..'"}'
+	elseif wifi_status == "W" then
 		return '{"full_text":"W","color":"'..gyr(tonumber(string.sub(wifi_bitrate, 1, -5))/54)..'"}'
+	else
+		return '{"full_text":"N","color":"'..bgrey..'"}'
 	end
 end
 
