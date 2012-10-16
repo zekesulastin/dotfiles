@@ -44,46 +44,52 @@ function gyr(value) -- Since the main gradient is Gr > Y > Red, let's make an al
 	return gradient(green,yellow,red,0,100,value)
 end
 
+function json_wrap(full_text,color) -- Because typing out the whole JSON every time gets old ...
+	return '{"full_text":"'..full_text..'","color":"'..color..'"}'
+end
+
 function conky_init()
 	conky_parse("${wireless_bitrate wlan0}${cpu cpu0}${memperc}${mpd_title}${mpd_artist}${mpd_status}")
 	conky_parse("${if_up eth0}${endif}${if_up wlan0}${endif}")
 end
 
 function conky_mpd()
-	mpd_title = conky_parse("${mpd_title}")
-	mpd_artist = conky_parse("${mpd_artist}")
 	mpd_status = conky_parse("${mpd_status}")
+	mpd_songinfo = conky_parse("${mpd_artist} - ${mpd_title}")
+
 	if mpd_status == "Playing" then
-		return '{"full_text":"M ","color":"'..green..'"},{"full_text":"'..mpd_artist..' - '..mpd_title..'"}'
+		return json_wrap("M ",green)..","..json_wrap(mpd_songinfo,bgrey)
 	elseif mpd_status == "Paused" then
-		return '{"full_text":"M ","color":"'..yellow..'"},{"full_text":"'..mpd_artist..' - '..mpd_title..'"}'
+		return json_wrap("M ",yellow)..","..json_wrap(mpd_songinfo,bgrey)
+	elseif mpd_status == "MPD not responding" then
+		return json_wrap("M",bgrey)
 	else
-		return '{"full_text":"M","color":"'..red..'"}'	
+		return json_wrap("M",red)	
 	end
 end
 
 function conky_net()
 	eth_status = conky_parse("${if_up eth0}E${endif}")
 	wifi_status = conky_parse("${if_up wlan0}W${endif}")
-	wifi_bitrate = conky_parse("${wireless_bitrate wlan0}")
+	wifi_bitrate = tonumber(string.sub(conky_parse("${wireless_bitrate wlan0}"),1,-5))
 
 	if eth_status == "E" then
-		return '{"full_text":"E","color":"'..green..'"}'
+		return json_wrap("E",green)
 	elseif wifi_status == "W" then
-		return '{"full_text":"W","color":"'..gyr(tonumber(string.sub(wifi_bitrate, 1, -5))/54)..'"}'
+		return json_wrap("W",gyr(wifi_bitrate))
 	else
-		return '{"full_text":"N","color":"'..bgrey..'"}'
+		return json_wrap("N",bgrey)
 	end
 end
 
 function conky_cpu()
 	local cpu_usage = tonumber(conky_parse("${cpu cpu0}"))
-	return '{"full_text":"C","color":"'..gyr(cpu_usage)..'"}'
+	return json_wrap("C",gyr(cpu_usage))
 end
 
 function conky_ram()
 	local ram_usage = tonumber(conky_parse("${memperc}"))
-	return '{"full_text":"R","color":"'..gyr(ram_usage)..'"}'
+	return json_wrap("R",gyr(ram_usage))
 end
 
 function conky_pvu()
@@ -92,8 +98,8 @@ function conky_pvu()
 	local pvu_vol = tonumber(f:read("*all"))
 	f:close()
 	if (pvu_vol == 0) then
-		return'{"full_text":"V","color":"'..bgrey..'"}'
+		return json_wrap("V",bgrey)
 	else
-		return'{"full_text":"V","color":"'..gyr(pvu_vol)..'"}'
+		return json_wrap("V",gyr(pvu_vol))
 	end
 end
