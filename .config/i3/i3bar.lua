@@ -62,8 +62,12 @@ function conky_mpd()
 end
 
 function conky_net()
-	local wifi_bitrate = tonumber(string.sub(conky_parse("${wireless_bitrate wlan0}"), 1, -5))
-	return '{"full_text":"W","color":"'..gyr(wifi_bitrate/54)..'"}'
+	local wifi_bitrate = conky_parse("${wireless_bitrate wlan0}")
+	if wifi_bitrate == "" then
+		return '{"full_text":"W","color":"'..bgrey..'"}'
+	else
+		return '{"full_text":"W","color":"'..gyr(tonumber(string.sub(wifi_bitrate, 1, -5)))..'"}'
+	end
 end
 
 function conky_cpu()
