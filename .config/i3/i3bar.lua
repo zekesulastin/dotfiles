@@ -76,7 +76,7 @@ function conky_net()
 	if eth_status == "E" then
 		return json_wrap("E",green)
 	elseif wifi_status == "W" then
-		return json_wrap("W",gyr(wifi_bitrate))
+		return json_wrap("W",gradient(red,yellow,green,0,54,wifi_bitrate))
 	else
 		return json_wrap("N",bgrey)
 	end
