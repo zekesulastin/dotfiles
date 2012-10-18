@@ -10,7 +10,7 @@ prompt_powerline() {
 	_m="\[\e[0;35;40m\]"
 	
 	if [[ $TERM == 'linux' ]]; then
-		_div='>' _cwd="\[\e[0;36m\] \w >";
+		_div='>' _cwd="\[\e[0;36m\] \w ";
 	else
 		_div='⮁' _cwd="$_c \w\[\e[0;30m\]⮀"
 	fi
