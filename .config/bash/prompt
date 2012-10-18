@@ -9,7 +9,7 @@ prompt_powerline() {
 	local _git_ps1_s="\$(__git_ps1 %s)"
 
 	if [[ $TERM == 'linux' ]]; then
-		_div='>' _cwd="\[\e[0;36m \w >$_none ";
+		_div='>' _cwd="\[\e[0;36m\] \w >$_none ";
 	else
 		_div='⮁' _cwd="$_c \w\[\e[0;30m\]⮀$_none"
 	fi
