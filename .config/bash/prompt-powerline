@@ -11,7 +11,7 @@ prompt_powerline() {
 	local _git_ps1_s="\$(__git_ps1 %s)"
 
 	if [[ $TERM == 'linux' ]]; then
-		_div='>' _cwd='\[\e[0;36m\w >';
+		_div='>' _cwd="\[\e[0;36m \w >$_none ";
 	else
 		_div='⮁' _cwd="$_c \w\[\e[0;30m\]⮀$_none"
 	fi
@@ -34,7 +34,12 @@ prompt_powerline() {
 	
 	_git="\$(__git_ps1 '\[\e[0;35;40m\] %s $_div')"
 
-	local _title="\[\e]2;$_title_host>$_title_user: \w\007\]"
+	case $TERM in
+		xterm*|rxvt*)
+			local _title="\[\e]2;$_title_host>$_title_user: \w\007\]" ;;
+		*)
+			local _title="" ;;
+	esac
 
 	PS1="$_title$_host$_user$_ret$_git$_cwd "
 	
