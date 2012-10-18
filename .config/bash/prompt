@@ -9,9 +9,9 @@ prompt_powerline() {
 	local _git_ps1_s="\$(__git_ps1 %s)"
 
 	if [[ $TERM == 'linux' ]]; then
-		_div='>' _cwd="\[\e[0;36m\] \w >$_none ";
+		_div='>' _cwd="\[\e[0;36m\] \w >";
 	else
-		_div='⮁' _cwd="$_c \w\[\e[0;30m\]⮀$_none"
+		_div='⮁' _cwd="$_c \w\[\e[0;30m\]⮀"
 	fi
 
 	if [[ $SSH_TTY ]]; then
@@ -39,7 +39,7 @@ prompt_powerline() {
 			local _title="" ;;
 	esac
 
-	PS1="$_title$_host$_user$_ret$_git$_cwd "
+	PS1="$_title$_host$_user$_ret$_git$_cwd$_none "
 	
 	export PS4='+$BASH_SOURCE[$LINENO]: '
 }
