@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-# WELCOME TO HELL.
-
 prompt_powerline() {
 	local _none="\[\e[0m\]"    # unsets color to term's fg color
 
