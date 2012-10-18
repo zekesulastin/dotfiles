@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
+
 prompt_powerline() {
 	local _none="\[\e[0m\]"    # unsets color to term's fg color
 
 	local _k="\[\e[0;30;40m\]" _r="\[\e[0;31;40m\]" _g="\[\e[0;32;40m\]" _y="\[\e[0;33;40m\]" \
-		  _b="\[\e[0;34;40m\]" _m="\[\e[0;35;40m\]" _c="\[\e[0;36;40m\]" _w="\[\e[0;37;40m\]"
-	
-	local _git_ps1_s="\$(__git_ps1 %s)"
+		  _b="\[\e[0;34;40m\]" _c="\[\e[0;36;40m\]" _w="\[\e[0;37;40m\]"
 
+	_m="\[\e[0;35;40m\]"
+	
 	if [[ $TERM == 'linux' ]]; then
 		_div='>' _cwd="\[\e[0;36m\] \w >";
 	else
@@ -15,7 +16,7 @@ prompt_powerline() {
 	fi
 
 	if [[ $SSH_TTY ]]; then
-		local _host="$_y \h $_div" _title_host="\h";
+		local _host="$_y \h $_div" _title_host="\h>";
 	else
 		local _host="$_b$_div" _title_host=">";
 	fi
@@ -23,29 +24,36 @@ prompt_powerline() {
 	if (( UID == 1000 )); then # I can generalize this later ...
 		local _user="$_g$_div" _title_user=">"
 	elif (( UID == 0 )); then
-		local _user="$_r root $_div" _title_user="root";
+		local _user="$_r root $_div" _title_user="root>";
 	else
 		local _user="$_g \u $_div" _title_user="\u";
 	fi
 
-	_ret='$((( _ret_value )) && printf " \[\e[1;31;40m\]$_ret_value $_div\[\e[0;0m\]")'
+	local _ret='$((( _ret_value )) && printf " \[\e[1;31;40m\]$_ret_value $_div\[\e[0;0m\]")'
 	
-	_git="\$(__git_ps1 '\[\e[0;35;40m\] %s $_div')"
+# This is so ugly and I DON'T CARE IT WORKS
+	local _git='$(if [[ "$_git_branch_ps1" == "master" ]]; then printf "\[\e[0;35;40m\]$_div"; elif [[ "$_git_branch_ps1" ]]; then printf "\[\e[0;35;40m\] $_git_branch_ps1 $_div"; fi)'
+	
+	local _title_git='$(if [[ "$_git_branch_ps1" == "master" ]]; then printf ">"; elif [[ "$_git_branch_ps1" ]]; then printf "${_git_branch_ps1}>"; fi)'
 
 	case $TERM in
 		xterm*|rxvt*)
-			local _title="\[\e]2;$_title_host>$_title_user: \w\007\]" ;;
+			local _title="\[\e]2;$_title_host$_title_user$_title_git \w\007\]" ;;
 		*)
 			local _title="" ;;
 	esac
 
 	PS1="$_title$_host$_user$_ret$_git$_cwd$_none "
 	
+	export PS2='cont >'
 	export PS4='+$BASH_SOURCE[$LINENO]: '
 }
 
-PROMPT_COMMAND='_ret_value=$?'
+get_git_branch() { _git_branch_ps1="$(__git_ps1 %s)"; } # sobad
+
+PROMPT_COMMAND='_ret_value=$?; _git_branch_ps1="$(__git_ps1 %s)"'
 GIT_PS1_SHOWDIRTYSTATE=yes
 prompt_powerline
 unset prompt_powerline
+unset _git_branch_ps1
 unset _cwd
