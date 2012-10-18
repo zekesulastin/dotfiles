@@ -11,7 +11,7 @@
 . $XDG_CONFIG_HOME/bash/systemd-alias
 . $XDG_CONFIG_HOME/bash/git-prompt
 . $XDG_CONFIG_HOME/bash/infinality-settings
-. $XDG_CONFIG_HOME/bash/prompt
+. $XDG_CONFIG_HOME/bash/prompt-powerline
 . $XDG_CONFIG_HOME/bash/console-colors
 
 HISTCONTROL=ignoredups:ignorespace
