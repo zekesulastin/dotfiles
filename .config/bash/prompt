@@ -42,7 +42,7 @@ prompt_powerline() {
 	fi
 
 # Inserts a bold red " 1 >" between the username and git segments if $? != 0
-	local _ret='$((( _ret_value )) && printf " \[\e[1;31;40m\]$_ret_value $_div\[\e[0;0m\]")'
+	local _ret='$((( _ret_value )) && printf " \[\e[1;31;40m\]$_ret_value $_div")'
 	
 # If not in a git repo, removes the magenta ">".  If in a git repo but not in an
 #	unmodified "master" branch, prints magenta " branch *+ >".
@@ -54,7 +54,7 @@ prompt_powerline() {
 # Ugly Hack of the Day: determines if PWD is a subdir in ~/src via array.  If so, displays the top
 #	subdir in white, then checks if PWD is in a subdir of that topdir.  If so, it then prints the
 #	rest like a normal directory.  If none of this is true, print the regular pwd.
-	local _cwd='$(IFS=/; read -a _pwdparts <<< "$PWD"; if [[ ${_pwdparts[3]} == "src" ]] && [[ ${_pwdparts[4]} ]]; then printf " \[\e[0;37;40m\]${_pwdparts[4]}\[\e[0;36;40m\]" && [[ ${_pwdparts[5]} ]] && printf "/${_pwdparts[*]:5}"; else printf " \[\e[0;36;40m\]\w"; fi)'
+	local _cwd='$(IFS=/; read -a _pwdparts <<< "$PWD"; if [[ ${_pwdparts[3]} == "src" ]] && [[ ${_pwdparts[4]} ]]; then printf " \[\e[0;37;40m\]${_pwdparts[4]}\[\e[0;36;40m\]" && [[ ${_pwdparts[5]} ]] && printf "/${_pwdparts[*]:5}"; else printf "\[\e[0;36;40m\] \w"; fi)'
 
 # Assembles and implements the xterm/rxvt title
 	case $TERM in
