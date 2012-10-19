@@ -48,11 +48,10 @@ urxvt.shading: 25
 *color7            : #D3D7CF
 *color15           : #EEECEC
 
-URxvt.perl-ext-common:      default,url-select,bell-command
+URxvt.perl-ext-common:      default,url-select
 URxvt.keysym.M-u:    perl:url-select:select_next
 URxvt.url-select.button:     2
-URxvt.url-select.launcher:   /usr/bin/firefox
-URxvt.url-select.underline: true
-URxvt.bell-command: paplay --property=media.role=event /home/zekesulastin/.pulse/chimes.wav
+URxvt.url-select.launcher:   /usr/bin/dwb
+URxvt.url-select.underline: false
 
 XLock.font:     -sony-fixed-medium-r-*-*-24-*-*-*-*-*-*-*
