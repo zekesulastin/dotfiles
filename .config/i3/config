@@ -121,7 +121,7 @@ bar {
 # }}}
 # {{{ Program Keybinds
 bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+d exec "dmenu_run -fn -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*"
+bindsym $mod+d exec "dmenu_run -p 'Run:' -fn -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*"
 
 bindsym $mod+F2 exec "xlock"
 
