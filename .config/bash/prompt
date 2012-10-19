@@ -51,8 +51,11 @@ prompt_powerline() {
 	
 	local _title_git='$(if [[ "$_git_branch_ps1" == "master" ]]; then printf ">"; elif [[ "$_git_branch_ps1" ]]; then printf "${_git_branch_ps1}>"; fi)'
 
-# Adds the current working directory.	
-	local _cwd='$(IFS=/ read -a _pwdparts <<< "$PWD"; if [[ ${_pwdparts[3]} == "src" ]] && [[ ${_pwdparts[4]} ]]; then printf " \[\e[0;37;40m\]${_pwdparts[4]} \[\e[0;36;40m\]${_pwdparts[@]:5}"; else printf " \[\e[0;36;40m\]\w"; fi)'
+# Ugly Hack of the Day: determines if PWD is a subdir in ~/src via array.  If so, displays the top
+#	subdir in white, then checks if PWD is in a subdir of that topdir.  If so, it then prints the
+#	rest like a normal directory.  If none of this is true, print the regular pwd.
+	local _cwd='$(IFS=/; read -a _pwdparts <<< "$PWD"; if [[ ${_pwdparts[3]} == "src" ]] && [[ ${_pwdparts[4]} ]]; then printf " \[\e[0;37;40m\]${_pwdparts[4]}\[\e[0;36;40m\]" && [[ ${_pwdparts[5]} ]] && printf "/${_pwdparts[*]:5}"; else printf " \[\e[0;36;40m\]\w"; fi)'
+
 # Assembles and implements the xterm/rxvt title
 	case $TERM in
 		xterm*|rxvt*)
