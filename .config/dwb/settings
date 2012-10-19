@@ -1,5 +1,6 @@
 
 [default]
+default-monospace-font-size=10
 javascript-can-access-clipboard=false
 complete-userscripts=false
 enable-offline-web-application-cache=true
@@ -40,7 +41,7 @@ adblocker-filterlist=/home/zekesulastin/.config/dwb/easylist.txt
 proxy=false
 user-agent=
 full-content-zoom=false
-editor=urxvtc -e vim dwb_uri
+editor=urxvt -e vim dwb_uri
 enable-private-browsing=false
 enable-favicon=true
 hint-active-color=#00ff00
@@ -67,7 +68,6 @@ enable-spell-checking=false
 font-hidden-statusbar=normal 10px helvetica
 tab-normal-fg-color-2=#dddddd
 tab-normal-fg-color-1=#cccccc
-default-monospace-font-size=10
 save-session=false
 tabbar-visible=2
 auto-insert-mode=false
@@ -115,7 +115,7 @@ font-completion=
 enable-spatial-navigation=false
 download-directory=/home/zekesulastin/Downloads
 adblocker=true
-download-external-command=urxvtc -e wget dwb_uri -O dwb_output --load-cookies dwb_cookies
+download-external-command=urxvt -e wget dwb_uri -O dwb_output --load-cookies dwb_cookies
 user-stylesheet-uri=
 auto-load-images=true
 tab-active-fg-color=#ffffff
