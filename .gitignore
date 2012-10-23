@@ -33,6 +33,7 @@
 .zcompdump
 .wine
 .error
+.mozilla
 .ncmpcpp/patterns.list
 !.bin/*
 !.ncmpcpp/*
@@ -71,7 +72,6 @@
 .config/pavucontrol.ini
 .config/user-dirs.dirs
 .config/user-dirs.locale
-.config/meat
 .config/rtorrent
 .config/tmux-powerline
 !.vim/*
