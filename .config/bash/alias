@@ -11,6 +11,7 @@ alias grep='grep --color=auto'
 alias mpc='mpc -h '${MPD_HOST}
 alias msi='makepkg -si'
 alias syua='sudo pacman-color -Syu && meat -u'
+alias syu='sudo pacman-color -Syu'
 alias auau='sudo aptitude update && sudo aptitude upgrade'
 alias winej='LC_ALL=ja_JP wine'
 alias xrl='xrandr --output DVI-D-0 --rotate left'
