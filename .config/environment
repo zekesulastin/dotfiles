@@ -6,6 +6,7 @@ export PATH=$HOME/.bin:$PATH
 export MPD_HOST=192.168.1.101
 export GTK2_RC_FILES=$HOME/.config/gtk-2.0/gtkrc-2.0
 export SDL_JOYSTICK_DEVICE=/dev/input/js0
+export WINEDLLOVERRIDES=winemenubuilder.exe=d
 
 if [[ $HOSTNAME == meiousei ]]; then
 	export TERMINAL=urxvt ;
