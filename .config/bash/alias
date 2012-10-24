@@ -27,3 +27,7 @@ alias mpo="mplayer -ao pulse:okaasan"
 if [[ $HOSTNAME != hoshiakari ]]; then
 	alias ncmpcpp="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp' 2>/dev/null" ;
 fi
+
+if [[ $HOSTHAME == tsukikage ]]; then
+	alias shutdown="sudo systemctl stop asd.service && poweroff" ;
+fi

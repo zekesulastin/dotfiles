@@ -2,7 +2,7 @@
 
 #.xinitrc! X server settings!
 
-
+sudo systemctl start asd.service &
 nvidia-settings -l
 xset fp+ /home/zekesulastin/.fonts
 xset fp rehash
