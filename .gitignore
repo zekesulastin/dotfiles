@@ -74,6 +74,7 @@
 .config/user-dirs.locale
 .config/rtorrent
 .config/tmux-powerline
+.config/cifs
 !.vim/*
 !.vim/*/*
 .vim/doc
