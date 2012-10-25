@@ -23,7 +23,7 @@ alias midiplay="aplaymidi --port 128:0"
 alias mpt="mplayer -ao pulse:tsukikage"
 alias mpm="mplayer -ao pulse:meiousei"
 alias mpo="mplayer -ao pulse:okaasan"
-alias powerdown="sudo systemctl stop asd.service && poweroff" ;
+alias powerdown="pkill firefox && sudo systemctl stop asd.service && poweroff" ;
 
 if [[ $HOSTNAME != hoshiakari ]]; then
 	alias ncmpcpp="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp' 2>/dev/null" ;
