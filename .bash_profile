@@ -4,6 +4,6 @@
 
 . $XDG_CONFIG_HOME/environment
 
-if [[ $HOSTNAME != hoshiakari ]] && [[ $(fgconsole) == 1 ]]; then
+if [[ ! $SSH_TTY ]] && [[ $(fgconsole) == 1 ]]; then
 	exec startx 2>/dev/null
 fi
