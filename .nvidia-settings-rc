@@ -2,7 +2,7 @@
 # /home/zekesulastin/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA X Server Settings utility
-# Generated on Sun Oct 28 00:00:35 2012
+# Generated on Sun Oct 28 00:19:21 2012
 #
 
 # ConfigProperties:
@@ -13,9 +13,9 @@ DisplayStatusBar = Yes
 SliderTextEntries = Yes
 IncludeDisplayNameInConfigFile = No
 ShowQuitDialog = Yes
-Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
-Timer = Thermal_Monitor_(GPU_0),Yes,1000
 Timer = Memory_Used_(GPU_0),Yes,3000
+Timer = Thermal_Monitor_(GPU_0),Yes,1000
+Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
 
 # Attributes:
 
@@ -63,4 +63,4 @@ tsukikage:0[dpy:2]/GreenContrast=0.000000
 tsukikage:0[dpy:2]/BlueContrast=0.000000
 tsukikage:0[dpy:2]/RedGamma=1.000000
 tsukikage:0[dpy:2]/GreenGamma=1.051447
-tsukikage:0[dpy:2]/BlueGamma=1.158400
+tsukikage:0[dpy:2]/BlueGamma=1.107096
