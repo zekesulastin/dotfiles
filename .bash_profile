@@ -4,6 +4,6 @@
 
 . $XDG_CONFIG_HOME/environment
 
-if [[ ! $SSH_TTY ]] && [[ $(fgconsole) == 1 ]]; then
-	exec startx 2>/dev/null
+if [[ $(fgconsole 2>/dev/null) == 1 ]]; then
+	exec startx &>/dev/null
 fi

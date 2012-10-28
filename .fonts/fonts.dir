@@ -1,4 +1,4 @@
-89
+141
 Lucida grande bold.ttf -b&h-lucida grande-semibold-r-normal--0-0-0-0-p-0-adobe-standard
 Lucida grande bold.ttf -b&h-lucida grande-semibold-r-normal--0-0-0-0-p-0-ascii-0
 Lucida grande bold.ttf -b&h-lucida grande-semibold-r-normal--0-0-0-0-p-0-iso10646-1
@@ -88,3 +88,55 @@ TamzenPL7x14b.bdf -misc-tamzenpl-bold-r-normal--14-101-100-100-c-70-iso10646-1
 TamzenPL7x14i.bdf -misc-tamzenpl-medium-i-normal--14-101-100-100-c-70-iso10646-1
 TamzenPL7x14r.bdf -misc-tamzenpl-medium-r-normal--14-101-100-100-c-70-iso10646-1
 TamzenPL7x14z.bdf -misc-tamzenpl-bold-i-normal--14-101-100-100-c-70-iso10646-1
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-adobe-standard
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-ascii-0
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-ibm-cp437
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-ibm-cp850
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-ibm-cp852
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-ibm-cp866
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-iso10646-1
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-iso8859-1
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-iso8859-10
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-iso8859-13
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-iso8859-15
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-iso8859-2
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-iso8859-3
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-iso8859-4
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-iso8859-5
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-iso8859-9
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-jisx0201.1976-0
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-jisx0208.1983-0
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-jisx0208.1990-0
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-jisx0212.1990-0
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-koi8-e
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-koi8-r
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-koi8-ru
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-koi8-u
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-koi8-uni
+msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-microsoft-cp1252
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-adobe-standard
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-ascii-0
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-ibm-cp437
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-ibm-cp850
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-ibm-cp852
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-ibm-cp866
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-iso10646-1
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-iso8859-1
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-iso8859-10
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-iso8859-13
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-iso8859-15
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-iso8859-2
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-iso8859-3
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-iso8859-4
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-iso8859-5
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-iso8859-9
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-jisx0201.1976-0
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-jisx0208.1983-0
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-jisx0208.1990-0
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-jisx0212.1990-0
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-koi8-e
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-koi8-r
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-koi8-ru
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-koi8-u
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-koi8-uni
+msmincho.ttc -ricoh-ms mincho-medium-r-normal--0-0-0-0-c-0-microsoft-cp1252
