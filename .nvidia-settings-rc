@@ -2,7 +2,7 @@
 # /home/zekesulastin/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA X Server Settings utility
-# Generated on Sat Oct 13 22:07:08 2012
+# Generated on Sun Oct 28 00:19:21 2012
 #
 
 # ConfigProperties:
@@ -13,6 +13,9 @@ DisplayStatusBar = Yes
 SliderTextEntries = Yes
 IncludeDisplayNameInConfigFile = No
 ShowQuitDialog = Yes
+Timer = Memory_Used_(GPU_0),Yes,3000
+Timer = Thermal_Monitor_(GPU_0),Yes,1000
+Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
 
 # Attributes:
 
@@ -43,3 +46,21 @@ ShowQuitDialog = Yes
 0/ColorRange[DFP-0]=0
 0/ColorRange[DFP-1]=0
 0/XVideoSyncToDisplay=131072
+tsukikage:0[dpy:1]/RedBrightness=-0.100405
+tsukikage:0[dpy:1]/GreenBrightness=-0.010784
+tsukikage:0[dpy:1]/BlueBrightness=0.035595
+tsukikage:0[dpy:1]/RedContrast=-0.030731
+tsukikage:0[dpy:1]/GreenContrast=-0.030837
+tsukikage:0[dpy:1]/BlueContrast=-0.030731
+tsukikage:0[dpy:1]/RedGamma=0.758197
+tsukikage:0[dpy:1]/GreenGamma=0.695047
+tsukikage:0[dpy:1]/BlueGamma=0.615323
+tsukikage:0[dpy:2]/RedBrightness=0.000000
+tsukikage:0[dpy:2]/GreenBrightness=0.000000
+tsukikage:0[dpy:2]/BlueBrightness=0.000000
+tsukikage:0[dpy:2]/RedContrast=0.000000
+tsukikage:0[dpy:2]/GreenContrast=0.000000
+tsukikage:0[dpy:2]/BlueContrast=0.000000
+tsukikage:0[dpy:2]/RedGamma=1.000000
+tsukikage:0[dpy:2]/GreenGamma=1.051447
+tsukikage:0[dpy:2]/BlueGamma=1.107096

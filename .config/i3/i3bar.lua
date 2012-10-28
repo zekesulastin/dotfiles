@@ -55,7 +55,7 @@ end
 
 function conky_mpd()
 	mpd_status = conky_parse("${mpd_status}")
-	mpd_songinfo = conky_parse("${mpd_artist} - ${mpd_title}")
+	mpd_songinfo = string.gsub(conky_parse("${mpd_artist} - ${mpd_title}"),'"','\\"')
 
 	if mpd_status == "Playing" then
 		return json_wrap("M ",green)..","..json_wrap(mpd_songinfo,bgrey)
