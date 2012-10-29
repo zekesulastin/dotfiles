@@ -97,7 +97,8 @@ function conky_pvu()
     local f = io.open('/tmp/pvu.zekesulastin','r')
 	local pvu_vol = tonumber(f:read("*all"))
 	f:close()
-	if (pvu_vol == 0) then
+
+	if (pvu_vol == 0) or (pvu_vol == nil) then
 		return json_wrap("V",bgrey)
 	else
 		return json_wrap("V",gyr(pvu_vol))
