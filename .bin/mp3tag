@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+_mp3tagdir="$HOME/.wine/drive_c/Program Files/Mp3tag"
+
+cd $_mp3tagdir
+exec "$_mp3tagdir/Mp3tag.exe"
