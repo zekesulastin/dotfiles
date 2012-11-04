@@ -22,6 +22,7 @@ song_library_format = "{%n - }{%t}|{%f}"
 song_status_format = "$b{$6%a$9 $1|$9} {$5%t$9} $1|$9 {$7%b$9} $1|$9 {$6%y$9}"
 tag_editor_album_format = "{%b} {(%y)}"
 song_window_title_format = "{%b}"
+media_library_display_date = "no"
 
 # Columns settings
 
@@ -29,6 +30,7 @@ song_columns_list_format = "(6)[magenta]{l} (30)[red]{a} (30)[blue]{b} (53)[mage
 
 # Misc 
 
+lyrics_directory = "~/.ncmpcpp/lyrics"
 playlist_display_mode = "classic"
 titles_visibility="no"
 browser_display_mode = "columns"
