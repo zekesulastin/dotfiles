@@ -143,4 +143,5 @@ for_window [title="Firefox Preferences"] floating enable
 for_window [title="Saved Passwords"] floating enable
 for_window [class="Download"] floating enable
 for_window [class="Steam"] floating enable
+for_window [class="Pcsx2"] floating enable
 # }}}
