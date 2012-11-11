@@ -71,9 +71,6 @@ prompt_powerline() {
 	export PS4='+$BASH_SOURCE[$LINENO]: '
 }
 
-# Told you it was ugly.
-get_git_branch() { _git_branch_ps1="$(__git_ps1 %s)"; } # sobad
-
 PROMPT_COMMAND='_ret_value=$?; _git_branch_ps1="$(__git_ps1 %s)"'
 GIT_PS1_SHOWDIRTYSTATE=yes
 prompt_powerline
