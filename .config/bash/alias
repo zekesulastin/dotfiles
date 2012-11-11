@@ -23,6 +23,9 @@ alias midiplay="aplaymidi --port 128:0"
 alias mpt="mplayer -ao pulse:tsukikage"
 alias mpm="mplayer -ao pulse:meiousei"
 alias mpo="mplayer -ao pulse:okaasan"
+alias vgmt="PULSE_SERVER=tsukikage padsp vgmplay"
+alias vgmm="PULSE_SERVER=meiousei padsp vgmplay"
+alias vgmo="PULSE_SERVER=okaasan padsp vgmplay"
 alias powerdown="pkill firefox; sudo systemctl stop asd.service && poweroff" ;
 
 if [[ $HOSTNAME != hoshiakari ]]; then
