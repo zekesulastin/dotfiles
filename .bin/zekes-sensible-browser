@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+
+case "$1" in 
+	-f | --fortune )
+		_fortune="$(fortune -a)"
+cat << EOF > /tmp/fortune.html
+<html>
+<head>
+	<style media="screen" type="text/css">
+		body {
+			position: absolute;
+			top: 35%;
+			left: 10%;
+			right: 10%;
+			font-family: monospace;
+			color:#aaaaaa;
+			background-color:#1a1a1a;
+		}
+	</style>
+</head>
+<body>
+$_fortune
+</body>
+</html>
+EOF
+
+		for _browser in $BROWSER firefox chromium konquerer rekonq midori jumanji dwb luakit uzbl w3m; do
+			if which $_browser > /dev/null 2>&1; then
+				exec $BROWSER /tmp/fortune.html
+			fi
+		done ;;
+	* )
+		for _browser in $BROWSER firefox chromium konquerer rekonq midori jumanji dwb luakit uzbl w3m; do
+			if which $_browser > /dev/null 2>&1; then
+				exec $BROWSER /tmp/fortune.html
+			fi
+		done ;;
+
+esac

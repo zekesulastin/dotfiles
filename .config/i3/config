@@ -120,7 +120,7 @@ bindsym $mod+d exec "dmenu_run -p 'Run:' -fn -*-tamzenpl-medium-r-*-*-14-*-*-*-*
 
 bindsym $mod+F2 exec "xlock"
 
-bindsym $mod+Ctrl+w exec browser-with-fortune
+bindsym $mod+Ctrl+w exec "zekes-sensible-browser -f"
 
 bindsym $mod+Up exec "mpc stop"
 bindsym $mod+Down exec "mpc toggle"

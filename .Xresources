@@ -51,7 +51,7 @@ urxvt.shading: 25
 URxvt.perl-ext-common:      default,url-select
 URxvt.keysym.M-u:    perl:url-select:select_next
 URxvt.url-select.button:     2
-URxvt.url-select.launcher:   /usr/bin/dwb
+URxvt.url-select.launcher: zekes-sensible-browser
 URxvt.url-select.underline: false
 
 XLock.font:     -sony-fixed-medium-r-*-*-24-*-*-*-*-*-*-*
