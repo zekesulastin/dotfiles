@@ -11,8 +11,9 @@ set number
 set ts=4
 set sw=4
 set laststatus=2
-set backupdir=/home/zekesulastin/.vim/backup
-set directory=/home/zekesulastin/.vim/swap
+set backupdir=$HOME/.vim/backup
+set directory=$HOME/.vim/swap
+set undofile undodir=$HOME/.vim/undo
 filetype on
 syntax on
 map Q gq
@@ -35,27 +36,34 @@ if has('gui_running')
 	let g:Powerline_colorscheme = 'default'
 	set guifont=PragmataPro\ for\ Powerline\ 10
 elseif $TERM =~ 'xterm-termite' || $TERM =~ 'rxvt-unicode-256color'
-		set t_Co=256
-		let g:zenburn_high_Contrast=1
-		colorscheme zenburn
-		highlight Comment cterm=italic
-		let g:Powerline_symbols = 'fancy'
-		let g:Powerline_colorscheme = 'default'
+	set t_Co=256
+	let g:zenburn_high_Contrast=1
+	colorscheme zenburn
+	highlight Comment cterm=italic
+	let g:Powerline_symbols = 'fancy'
+	let g:Powerline_colorscheme = 'default'
 elseif $TERM =~ 'screen-256color'
-		set t_Co=256
-		let g:zenburn_high_Contrast=1
-		colorscheme zenburn
-		highlight Comment cterm=italic
-		"I want my damn italics, even in tmux.
-		set t_so=[7m
-		set t_ZH=[3m
-		let g:Powerline_symbols = 'fancy'
-		let g:Powerline_colorscheme = 'default'
+	set t_Co=256
+	let g:zenburn_high_Contrast=1
+	colorscheme zenburn
+	highlight Comment cterm=italic
+	"I want my damn italics, even in tmux.
+	set t_so=[7m
+	set t_ZH=[3m
+	let g:Powerline_symbols = 'fancy'
+	let g:Powerline_colorscheme = 'default'
 else
-		set t_Co=8
-		set bg=dark
-		let g:Powerline_symbols = 'compatible'
-		let g:Powerline_colorscheme = 'default'
+	set t_Co=8
+	set bg=dark
+	let g:Powerline_symbols = 'compatible'
+	let g:Powerline_colorscheme = 'default'
 endif
+
+highlight ExtraWhitespace ctermbg=darkred guibg=darkred
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 command W w !sudo tee % > /dev/null

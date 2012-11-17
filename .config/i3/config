@@ -6,7 +6,7 @@
 set $mod Mod4
 set $blue	#3465A4
 set $dblue	#0a2a4a
-set $dgrey  #161616
+set $dgrey	#161616
 set $grey	#2E3436
 set $bgrey	#555753
 set $black	#000000
@@ -21,7 +21,7 @@ font -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*
 new_window 1pixel
 
 # Client colors			border	backgr.	text	indicator
-#client.focused			$dblue	$dblue	$bgrey	$blue 
+#client.focused			$dblue	$dblue	$bgrey	$blue
 #client.focused_inactive	$grey	$grey	$bgrey	$grey
 #client.unfocused		$dgrey	$dgrey	$bgrey	$bgrey
 #client.urgent			$red	$red	$white	$white
@@ -105,8 +105,8 @@ bar {
 	colors {
 		background $black
 		statusline $bgrey
-		
-		# Workspace colors	Border	Backgd	Text	
+
+		# Workspace colors	Border	Backgd	Text
 #		focused_workspace	$dblue	$dblue	$bgrey
 #		active_workspace	$grey	$grey	$bgrey
 #		inactive_workspace	$dgrey	$dgrey	$bgrey
