@@ -43,12 +43,12 @@ prompt_powerline() {
 
 # Inserts a bold red " 1 >" between the username and git segments if $? != 0
 	local _ret='$((( _ret_value )) && printf " \[\e[1;31;40m\]$_ret_value $_div")'
-	
+
 # If not in a git repo, removes the magenta ">".  If in a git repo but not in an
 #	unmodified "master" branch, prints magenta " branch *+ >".
 # This is so ugly and I DON'T CARE IT WORKS
 	local _git='$(if [[ "$_git_branch_ps1" == "master" ]]; then printf "\[\e[0;35;40m\]$_div"; elif [[ "$_git_branch_ps1" ]]; then printf "\[\e[0;35;40m\] $_git_branch_ps1 $_div"; fi)'
-	
+
 	local _title_git='$(if [[ "$_git_branch_ps1" == "master" ]]; then printf ">"; elif [[ "$_git_branch_ps1" ]]; then printf "${_git_branch_ps1}>"; fi)'
 
 # Ugly Hack of the Day: determines if PWD is a subdir in ~/src via array.  If so, displays the top
@@ -66,7 +66,7 @@ prompt_powerline() {
 
 # The part we've all been waiting for!
 	PS1="$_title$_host$_user$_ret$_git$_cwd$_cap$_none "
-	
+
 	export PS2='cont >'
 	export PS4='+$BASH_SOURCE[$LINENO]: '
 }
