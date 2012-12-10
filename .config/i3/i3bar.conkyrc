@@ -6,7 +6,6 @@ mpd_host 192.168.1.101
 if_up_strictness address
 lua_load /home/zekesulastin/.config/i3/i3bar.lua
 lua_startup_hook init
-template0 #
 # Launched by "conkyi3bar" which adds the opening of the json
 # mpd_status must be called in .conkyrc or it fails to update, so
 # I stuck it in an emtpy block at the beginning of the json :D

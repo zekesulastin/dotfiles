@@ -1,8 +1,8 @@
-#/usr/bin/env sh
+#/bin/sh
 # You should probably stick this in your $PATH owned by
 # root:root or something; I just have a copy in this directory
 # for githubability purposes.
 
 echo '{"version":1}'
 echo '['
-exec conky -c ~/.config/i3/i3bar.conkyrc 2>/dev/null
+exec conky -c "$XDG_CONFIG_HOME/i3/i3bar.conkyrc" 2>/dev/null
