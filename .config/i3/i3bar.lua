@@ -20,7 +20,7 @@ function gradient(bot_color, mid_color, top_color, min, max, value)
 	elseif (value > min) then
 		factor = (value - min) / (max - min)
 	end
-	
+
 	local bot_red, bot_green, bot_blue = color2dec(bot_color)
 	local mid_red, mid_green, mid_blue = color2dec(mid_color)
 	local top_red, top_green, top_blue = color2dec(top_color)
@@ -54,8 +54,18 @@ function conky_init()
 end
 
 function conky_mpd()
-	mpd_status = conky_parse("${mpd_status}")
-	mpd_songinfo = string.gsub(conky_parse("${mpd_artist} - ${mpd_title}"),'"','\\"')
+	mpd_status	= conky_parse("${mpd_status}")
+	mpd_artist	= conky_parse("${mpd_artist}")
+	mpd_title	= conky_parse("${mpd_title}")
+
+	if mpd_artist == "" then
+		mpd_artist = "Stream: "
+	else
+		mpd_artist = mpd_artist.." - "
+	end
+
+	mpd_songinfo = string.gsub(mpd_artist..mpd_title,'\\','\\\\')
+	mpd_songinfo = string.gsub(mpd_songinfo,'"','\\"')
 
 	if mpd_status == "Playing" then
 		return json_wrap("M ",green)..","..json_wrap(mpd_songinfo,bgrey)
@@ -64,7 +74,7 @@ function conky_mpd()
 	elseif mpd_status == "MPD not responding" then
 		return json_wrap("M",bgrey)
 	else
-		return json_wrap("M",red)	
+		return json_wrap("M",red)
 	end
 end
 
