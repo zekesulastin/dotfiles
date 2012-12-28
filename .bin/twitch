@@ -1,0 +1,15 @@
+#/usr/bin/bash
+
+INRES="$2"
+OUTRES="$3"
+INPUT_SINK="alsa_output.pci-0000_00_1b.0.analog-stereo.monitor"
+FPS="15"
+QUAL="fast"
+STREAM_KEY="$1"
+URL="rtmp://live.twitch.tv/app/$STREAM_KEY" #flashver=FMLE/3.0\20(compatible;\20FMSc/1.0)"
+
+ffmpeg -f x11grab -s "$INRES" -r 15 -i :0.0 -ab 22050\
+ -f pulse -i "$INPUT_SINK" \
+ -vcodec libx264 -pix_fmt yuv420p -s "$OUTRES" -preset "$QUAL" \
+ -acodec libmp3lame -ac 1 -ar 22050 \
+ -f flv "$URL"
