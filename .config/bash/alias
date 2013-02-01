@@ -43,7 +43,7 @@ fi
 pl () {
 	case "$1" in
 		"" )
-			local _current="$(mpc -f "[%artist% - ]%title%[[ - %album%][ \\(%time%\\)]]" | head -n 1)"
+			local _current="$(mpc current -f "[%artist% - ]%title%[[ - %album%][ \\(%time%\\)]]")"
 			mpc playlist -f "[%artist% - ]%title%[[ - %album%][ (%time%)]]" |\
 				 egrep -nT --color "$_current|" ;;
 		"a" )
