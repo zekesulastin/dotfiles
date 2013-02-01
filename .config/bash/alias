@@ -32,3 +32,10 @@ if [[ $HOSTNAME != hoshiakari ]]; then
 	alias ncmpcpp="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp' 2>/dev/null" ;
 fi
 
+pl () {
+	if [[ ! "$1" ]]; then
+		mpc playlist | nl
+	else
+		mpc play "$1"
+	fi
+}
