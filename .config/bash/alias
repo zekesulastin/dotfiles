@@ -43,19 +43,24 @@ fi
 pl () {
 	case "$1" in
 		"" )
-			local _status=()
-			mapfile -t -n2 _status < \
-				<(mpc status -f "[%artist% - ]%title%[[ - %album%][ \\(%time%\\)]]")
-			case "${_status[1]}" in
-				"[playing]"* )
+			declare -A _status
+			_status=()
+			while read -r; do
+				[[ ! "$REPLY" ]] && break
+				_status+=( ["${REPLY%%: *}"]="${REPLY#*: }" )
+			done < <((echo "status"; echo "currentsong"; sleep .1; echo "q"; echo "close") |\
+				 telnet -e q $MPD_HOST 6600)
+			_status+=( ["0"]="${_status[Artist]} - ${_status[Title]} - ${_status[Album]}" )
+			case "${_status[state]}" in
+				"play" )
 					mpc playlist -f "[%artist% - ]%title%[[ - %album%][ (%time%)]]" |\
 						GREP_COLORS="ms=01;32:mc=01:32" egrep -nT --color "${_status[0]}|" ;;
-				"[paused]"* )
+				"pause" )
 					mpc playlist -f "[%artist% - ]%title%[[ - %album%][ (%time%)]]" |\
 					 	GREP_COLORS="ms=01;33:mc=01;33" egrep -nT --color "${_status[0]}|" ;;
 				* )
 					mpc playlist -f "[%artist% - ]%title%[[ - %album%][ (%time%)]]" |\
-						 egrep -nT --color "${_status[0]}|" ;;
+						egrep -nT --color "${_status[0]}|" ;;
 			esac ;;
 		"a" )
 			mpc add "$2" ;;
