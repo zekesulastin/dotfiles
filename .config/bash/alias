@@ -8,7 +8,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias grep='grep --color=auto'
-alias mpc='mpc -h '${MPD_HOST}
 alias msi='makepkg -si'
 alias syu='pacaur -Syu'
 alias auau='sudo aptitude update && sudo aptitude upgrade'
@@ -44,14 +43,26 @@ fi
 pl () {
 	case "$1" in
 		"" )
-			mpc playlist | nl ;;
+			local _current="$(mpc -f "[%artist% - ]%title%[[ - %album%][ \\(%time%\\)]]" | head -n 1)"
+			mpc playlist -f "[%artist% - ]%title%[[ - %album%][ (%time%)]]" |\
+				 egrep -nT --color "$_current|" ;;
 		"a" )
-			mpc add "$1" ;;
+			mpc add "$2" ;;
 		"c" )
-			mpc clear ;;
+			mpc clear -q;;
 		"i" )
-			mpc insert "$1" ;;
+			mpc insert "$2" ;;
+		"t" )
+			mpc toggle -f "[%artist% - ]%title%[ - %album%]" | head -n 1 ;;
+		"n" )
+			mpc next -f "[%artist% - ]%title%[ - %album%]" | head -n 1 ;;
+		"p" )
+			mpc prev -f "[%artist% - ]%title%[ - %album%]" | head -n 1 ;;
+		"s" )
+			mpc status -f "[%artist% - ]%title%[ - %album%]" ;;
+		[0-9]* )
+			mpc play -f "[%artist% - ]%title%[ - %album%]" "$1" | head -n 1 ;;
 		* )
-			mpc play "$1" ;;
+			mpc "$@" ;;
 	esac
 }
