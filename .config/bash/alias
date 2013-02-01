@@ -66,3 +66,5 @@ pl () {
 			mpc "$@" ;;
 	esac
 }
+
+complete -o nospace -F _mpc pl
