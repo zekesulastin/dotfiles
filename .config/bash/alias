@@ -10,8 +10,7 @@ alias l='ls -CF'
 alias grep='grep --color=auto'
 alias mpc='mpc -h '${MPD_HOST}
 alias msi='makepkg -si'
-alias syua='sudo pacman-color -Syu && meat -u'
-alias syu='sudo pacman-color -Syu'
+alias syu='pacaur -Syu'
 alias auau='sudo aptitude update && sudo aptitude upgrade'
 alias winej='WINEDEBUG=-all LC_ALL=ja_JP.utf8 wine'
 alias xrl='xrandr --output DVI-D-0 --rotate left'
@@ -23,9 +22,21 @@ alias midiplay="aplaymidi --port 128:0"
 alias mpt="mplayer -ao pulse:tsukikage"
 alias mpm="mplayer -ao pulse:meiousei"
 alias mpo="mplayer -ao pulse:okaasan"
-alias powerdown="pkill firefox; sudo systemctl stop asd.service && poweroff" ;
 
-if [[ $HOSTNAME != hoshiakari ]]; then
+powerdown () {
+	if [[ "$HOSTNAME" -eq "tsukikage" ]]; then
+		pkill firefox
+		poweroff
+	elif [[ "$HOSTNAME" -eq "meiousei" ]]; then
+		sudo shutdown -h now
+	elif [[ "$HOSTNAME" -eq "hoshiakari" ]]; then
+		echo "powerdown: this is your SERVER, br0 - note the convenient yellow 'hoshiakari' in your PS1."
+	else
+		echo "powerdown: no defined behavior for this host."
+	fi
+}
+
+if [[ "$HOSTNAME" != "hoshiakari" ]]; then
 	alias ncmpcpp="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp' 2>/dev/null" ;
 fi
 
