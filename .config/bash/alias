@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 alias less=$PAGER
-alias zless=$PAGER 
+alias zless=$PAGER
 alias ls='ls --color=auto'
 alias du1='du -h --max-depth=1'
 alias ll='ls -alF'
@@ -24,16 +24,17 @@ alias mpm="mplayer -ao pulse:meiousei"
 alias mpo="mplayer -ao pulse:okaasan"
 
 powerdown () {
-	if [[ "$HOSTNAME" -eq "tsukikage" ]]; then
-		pkill firefox
-		poweroff
-	elif [[ "$HOSTNAME" -eq "meiousei" ]]; then
-		sudo shutdown -h now
-	elif [[ "$HOSTNAME" -eq "hoshiakari" ]]; then
-		echo "powerdown: this is your SERVER, br0 - note the convenient yellow 'hoshiakari' in your PS1."
-	else
-		echo "powerdown: no defined behavior for this host."
-	fi
+	case "$HOSTNAME" in
+		"tsukikage" )
+			pkill firefox
+			poweroff ;;
+		"meiousei" )
+			sudo shutdown -h now ;;
+		"hoshiakari" )
+			echo "powerdown: this is your SERVER, br0" ;;
+		* )
+			echo "powerdown: no defined behavior for this host" ;;
+	esac
 }
 
 if [[ "$HOSTNAME" != "hoshiakari" ]]; then
@@ -41,9 +42,16 @@ if [[ "$HOSTNAME" != "hoshiakari" ]]; then
 fi
 
 pl () {
-	if [[ ! "$1" ]]; then
-		mpc playlist | nl
-	else
-		mpc play "$1"
-	fi
+	case "$1" in
+		"" )
+			mpc playlist | nl ;;
+		"a" )
+			mpc add "$1" ;;
+		"c" )
+			mpc clear ;;
+		"i" )
+			mpc insert "$1" ;;
+		* )
+			mpc play "$1" ;;
+	esac
 }
