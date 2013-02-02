@@ -74,7 +74,7 @@ function conky_mpd()
 	elseif mpd_status == "MPD not responding" then
 		return json_wrap("M",bgrey)
 	else
-		return json_wrap("M",red)
+		return json_wrap("M ",red) ..","..json_wrap(mpd_songinfo,bgrey)
 	end
 end
 
