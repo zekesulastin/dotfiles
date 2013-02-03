@@ -65,25 +65,10 @@ pl () {
 						GREP_COLORS="ms=01;31:sl=31:se=30:ln=36"\
 						grep -nFTC 1000 --color "${_status[0]}" ;;
 			esac ;;
-		"a" )
-			mpc add "$2" ;;
-		"c" )
-			mpc clear -q;;
-		"i" )
-			mpc insert "$2" ;;
-		"t" )
-			mpc toggle -f "[%artist% - ]%title%[ - %album%]" | head -n 1 ;;
-		"n" )
-			mpc next -f "[%artist% - ]%title%[ - %album%]" | head -n 1 ;;
-		"p" )
-			mpc prev -f "[%artist% - ]%title%[ - %album%]" | head -n 1 ;;
-		"s" )
-			mpc status -f "[%artist% - ]%title%[ - %album%]" ;;
 		[0-9]* )
 			mpc play -f "[%artist% - ]%title%[ - %album%]" "$1" | head -n 1 ;;
 		* )
 			mpc "$@" ;;
 	esac
 }
-
 complete -o nospace -F _mpc pl
