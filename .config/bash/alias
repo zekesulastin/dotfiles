@@ -30,9 +30,9 @@ powerdown () {
 		"meiousei" )
 			sudo shutdown -h now ;;
 		"hoshiakari" )
-			echo "powerdown: this is your SERVER, br0" ;;
+			echo >&2 "powerdown: this is your SERVER, br0" && return 255;;
 		* )
-			echo "powerdown: no defined behavior for this host" ;;
+			echo >&2 "powerdown: no defined behavior for this host" && return 1;;
 	esac
 }
 
