@@ -49,7 +49,7 @@ function json_wrap(full_text,color) -- Because typing out the whole JSON every t
 end
 
 function conky_init()
-	conky_parse("${wireless_bitrate wlan0}${cpu cpu0}${memperc}${mpd_title}${mpd_artist}${mpd_status}")
+	conky_parse("${wireless_bitrate wlan0}${cpu cpu0}${memperc}${mpd_title}${mpd_artist}${mpd_status}${mpd_name}")
 	conky_parse("${if_up eth0}${endif}${if_up wlan0}${endif}")
 end
 
@@ -57,9 +57,10 @@ function conky_mpd()
 	mpd_status	= conky_parse("${mpd_status}")
 	mpd_artist	= conky_parse("${mpd_artist}")
 	mpd_title	= conky_parse("${mpd_title}")
+	mpd_name	= conky_parse("${mpd_name}")
 
-	if mpd_artist == "" then
-		mpd_artist = "Stream: "
+	if mpd_name ~= "" then
+		mpd_artist = mpd_name..": "
 	else
 		mpd_artist = mpd_artist.." - "
 	end
