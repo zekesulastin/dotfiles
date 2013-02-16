@@ -41,15 +41,22 @@ if [[ "$HOSTNAME" != "hoshiakari" ]]; then
 fi
 
 pl () {
+	# Default action is playlist display/manipulation
+	# action `o' automates pulse output selection
 	case "$1" in
 		"" )
+		# Prints the current playlist, numbered, with the current song in
+		#	green if playing, yellow if paused, red if stopped (not entirely reliable)
+		# In the tradition of horrid hacks everywhere (and because mpc status doesn't return)
+		#	anything useful if mpd is stopped), this is accomplished by telnetting into the
+		#	remote mpd and loading up an associative array, then abusing grep.
 			declare -A _status
 			_status=()
 			while read -r; do
 				[[ ! "$REPLY" ]] && break
 				_status+=( ["${REPLY%%: *}"]="${REPLY#*: }" )
 			done < <((echo "status"; echo "currentsong"; sleep .1; echo "q"; echo "close") |\
-				 telnet -e q $MPD_HOST 6600)
+				 telnet -e q $MPD_HOST 6600) # sleep .1 is the shortest reliable sleep time
 			_status+=( ["0"]="${_status[Artist]} - ${_status[Title]} - ${_status[Album]}" )
 			case "${_status[state]}" in
 				"play" )
@@ -67,6 +74,24 @@ pl () {
 			esac ;;
 		[0-9]* )
 			mpc play -f "[%artist% - ]%title%[ - %album%]" "$1" | head -n 1 ;;
+		o[0-9]* )
+			mpc enable "${1#o}" | GREP_COLORS="ms=01;32:sl=01;32:se=30:ln=36"\
+				grep -C 1000 --color enabled ;;
+		od[0-9]* )
+			mpc disable "${1#od}" | GREP_COLORS="ms=01;32:sl=01;32:se=30:ln=36"\
+				grep -C 1000 --color enabled ;;
+		os )
+		# s as in `self'
+		# Iterates through the (hardcoded) PA outputs, disables them, then
+		#	re-enables the output matching the current system's hostname.
+			local _self_output=""
+			for i in {3..6}; do mpc disable $i > /dev/null; done
+			_self_output="$(mpc outputs | grep "$HOSTNAME")"
+			mpc enable ${_self_output:7:2} | GREP_COLORS="ms=01;32:sl=01;32:se=30:ln=36"\
+				grep -C 1000 --color enabled ;;
+		o )
+			mpc outputs | GREP_COLORS="ms=01;32:sl=01;32:se=30:ln=36"\
+				grep -C 1000 --color enabled ;;
 		* )
 			mpc "$@" ;;
 	esac
