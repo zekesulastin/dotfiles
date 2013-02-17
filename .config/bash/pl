@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# Does certain mpd functions with few keystrokes; originally just displayed the playlist
+#	line numbers, thus the name `pl'.  Now displays playlist w/ player states, jumps to
+#	give playlist track, shows/sets outputs, and selects the current PC's PA output.
+
+# TODO: add configurable context to _pl_show_playlist and `pl a(ll)#' command
+#		remove hardcoded limits in `pl os'
+
+pl () {
+	local _pl_output_enabled="ms=01;32:sl=01;32:se=30:ln=36"
+
+	case "$1" in
+		"" )
+			_pl_show_playlist ;;
+		[0-9]* )
+			mpc play -f "[%artist% - ]%title%[ - %album%]" "$1" | head -n 1 ;;
+		o[0-9]* )
+			mpc enable "${1#o}" | GREP_COLORS="$_pl_output_enabled"\
+				grep -C 1000 --color enabled ;;
+		od[0-9]* )
+			mpc disable "${1#od}" | GREP_COLORS="$_pl_output_enabled"\
+				grep -C 1000 --color enabled ;;
+		os )
+		# s as in `self'
+		# Iterates through the (hardcoded) PA outputs, disables them, then
+		#	re-enables the output matching the current system's hostname.
+			if [[ "$HOSTNAME" = "hoshiakari" ]]; then
+				echo >&2 "pl: your server is not a valid mpd playback target, br0" && return 255
+			fi
+
+			local _self_output=""
+			_self_output="$(mpc outputs | grep "$HOSTNAME")"
+			if [[ ! "$_self_output" ]]; then
+				echo >&2 "pl: no PulseAudio mpd output found for host $HOSTNAME" && return 1
+			fi
+
+			for i in {3..6}; do mpc disable $i >/dev/null; done
+			mpc enable ${_self_output:7:2} | GREP_COLORS="$_pl_output_enabled"\
+				grep -C 1000 --color enabled
+			mpc play >/dev/null ;;
+		o )
+			mpc outputs | GREP_COLORS="$_pl_output_enabled"\
+				grep -C 1000 --color enabled ;;
+		* )
+			mpc "$@" ;;
+	esac
+}
+
+_pl_show_playlist () {
+	declare -A _pl_status _pl_grep_colors
+	_pl_grep_colors=( 	["play"]="ms=01;32:sl=32:se=30:ln=36"\
+					 	["pause"]="ms=01;33:sl=33:se=30:ln=36"\
+						["stop"]="ms=01;31:sl=31:se=30:ln=36" )
+	_pl_status=()
+
+	# mpc status does not return anything useful when in state `stop', so mpd's telnet
+	#	interface is invoked directly with the results put in an array for parsing.
+	while read -r; do
+		[[ ! "$REPLY" ]] && break
+		_pl_status+=( [${REPLY%%: *}]="${REPLY#*: }" )
+	done < <( (echo "status"; echo "currentsong"; sleep .1; echo "q"; echo "close") |\
+		 telnet -e q $MPD_HOST 6600) # sleep .1 is the shortest reliable sleep time
+	_pl_status+=( [np]="${_pl_status[Artist]} - ${_pl_status[Title]} - ${_pl_status[Album]}" )
+
+	mpc playlist -f "[%artist% - ]%title%[[ - %album%][ (%time%)]]" |\
+		GREP_COLORS=${_pl_grep_colors[${_pl_status[state]}]}\
+		grep -nFTC 1000 --color "${_pl_status[np]}"
+}
+
+complete -o nospace -F _mpc pl

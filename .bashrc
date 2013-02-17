@@ -8,6 +8,7 @@
 
 . $XDG_CONFIG_HOME/bash/alias
 . $XDG_CONFIG_HOME/bash/udisks
+. $XDG_CONFIG_HOME/bash/pl
 . $XDG_CONFIG_HOME/bash/systemd-alias
 . $XDG_CONFIG_HOME/bash/git-prompt
 . $XDG_CONFIG_HOME/bash/infinality-settings
