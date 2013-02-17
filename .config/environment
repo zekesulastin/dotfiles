@@ -9,16 +9,16 @@ export SDL_JOYSTICK_DEVICE=/dev/input/js0
 export WINEDLLOVERRIDES=winemenubuilder.exe=d
 export WINEARCH=win32
 
-if [[ $HOSTNAME == meiousei ]]; then
-	export TERMINAL=urxvt ;
+if [[ $HOSTNAME == tsukikage ]]; then
+	export TERMINAL=termite
 else
-	export TERMINAL=termite ;
+	export TERMINAL=urxvt
 fi
 
 if [[ $HOSTNAME == hoshiakari ]]; then
-	export BROWSER=elinks ;
+	export BROWSER=elinks
 elif [[ $HOSTNAME == meiousei ]]; then
-	export BROWSER=dwb ;
+	export BROWSER=luakit
 else
-	export BROWSER=firefox ;
+	export BROWSER=firefox
 fi
