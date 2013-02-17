@@ -107,6 +107,7 @@ bar {
 	colors {
 		background $black
 		statusline $bgrey
+		separator $dgrey
 
 		# Workspace colors	Border	Backgd	Text
 #		focused_workspace	$dblue	$dblue	$bgrey

@@ -44,8 +44,8 @@ function gyr(value) -- Since the main gradient is Gr > Y > Red, let's make an al
 	return gradient(green,yellow,red,0,100,value)
 end
 
-function json_wrap(full_text,color) -- Because typing out the whole JSON every time gets old ...
-	return '{"full_text":"'..full_text..'","color":"'..color..'"}'
+function json_wrap(full_text,color,sep,bw) -- Because typing out the whole JSON every time gets old ...
+	return '{"full_text":"'..full_text..'","color":"'..color..'","separator":'..sep..',"separator_block_width":'..bw..'}'
 end
 
 function conky_init()
@@ -69,13 +69,13 @@ function conky_mpd()
 	mpd_songinfo = string.gsub(mpd_songinfo,'"','\\"')
 
 	if mpd_status == "Playing" then
-		return json_wrap("M ",green)..","..json_wrap(mpd_songinfo,bgrey)
+		return json_wrap("M ",green,0,0)..","..json_wrap(mpd_songinfo,bgrey,0,0)
 	elseif mpd_status == "Paused" then
-		return json_wrap("M ",yellow)..","..json_wrap(mpd_songinfo,bgrey)
+		return json_wrap("M ",yellow,0,0)..","..json_wrap(mpd_songinfo,bgrey,0,0)
 	elseif mpd_status == "MPD not responding" then
-		return json_wrap("M",bgrey)
+		return json_wrap("M",bgrey,0,0)
 	else
-		return json_wrap("M ",red) ..","..json_wrap(mpd_songinfo,bgrey)
+		return json_wrap("M ",red,0,0) ..","..json_wrap(mpd_songinfo,bgrey,0,0)
 	end
 end
 
@@ -85,22 +85,22 @@ function conky_net()
 	wifi_bitrate = tonumber(string.sub(conky_parse("${wireless_bitrate wlan0}"),1,-5))
 
 	if eth_status == "E" then
-		return json_wrap("E",green)
+		return json_wrap("E",green,0,0)
 	elseif wifi_status == "W" then
-		return json_wrap("W",gradient(red,yellow,green,0,54,wifi_bitrate))
+		return json_wrap("W",gradient(red,yellow,green,0,54,wifi_bitrate),0,0)
 	else
-		return json_wrap("N",bgrey)
+		return json_wrap("N",bgrey,0,0)
 	end
 end
 
 function conky_cpu()
 	local cpu_usage = tonumber(conky_parse("${cpu cpu0}"))
-	return json_wrap("C",gyr(cpu_usage))
+	return json_wrap("C",gyr(cpu_usage),0,0)
 end
 
 function conky_ram()
 	local ram_usage = tonumber(conky_parse("${memperc}"))
-	return json_wrap("R",gyr(ram_usage))
+	return json_wrap("R",gyr(ram_usage),0,0)
 end
 
 function conky_pvu()
@@ -110,8 +110,8 @@ function conky_pvu()
 	f:close()
 
 	if (pvu_vol == 0) or (pvu_vol == nil) then
-		return json_wrap("V",bgrey)
+		return json_wrap("V",bgrey,0,0)
 	else
-		return json_wrap("V",gyr(pvu_vol))
+		return json_wrap("V",gyr(pvu_vol),0,0)
 	end
 end

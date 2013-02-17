@@ -10,6 +10,10 @@ lua_startup_hook init
 # mpd_status must be called in .conkyrc or it fails to update, so
 # I stuck it in an emtpy block at the beginning of the json :D
 TEXT
-[{"full_text":"","instance":"${mpd_status}"},\
-{"full_text":"["},${lua mpd},{"full_text":"]["},${lua net},${lua cpu},${lua ram},${lua pvu},\
-{"full_text":"]["},{"full_text":"${time %a, %b %d} ${time %H:%M}"},{"full_text":"]"}],
+[{"full_text":"[","instance":"${mpd_status}","separator":0,"separator_block_width":0},\
+${lua mpd},\
+{"full_text":"][","separator":0,"separator_block_width":0},\
+${lua net},${lua cpu},${lua ram},${lua pvu},\
+{"full_text":"][","separator":0,"separator_block_width":0},\
+{"full_text":"${time %a, %b %d} ${time %H:%M}","separator":0,"separator_block_width":0},\
+{"full_text":"]","separator":0,"separator_block_width":0}],
