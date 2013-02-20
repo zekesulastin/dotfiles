@@ -14,7 +14,7 @@ pl () {
 		"" )
 			_pl_show_playlist ;;
 		[0-9]* )
-			mpc play -f "[%name%: ][%artist% - ]%title%[ - %album%]" "$1" | head -n 1 ;;
+			mpc play -f "[%name%: ][%artist% - ]%title%[[ - %album%][ (%time%)]]" "$1" | head -n 1 ;;
 		o[0-9]* )
 			mpc enable "${1#o}" | GREP_COLORS="$_pl_output_enabled"\
 				grep -C 1000 --color enabled ;;
@@ -61,7 +61,12 @@ _pl_show_playlist () {
 		_pl_status+=( [${REPLY%%: *}]="${REPLY#*: }" )
 	done < <( (echo "status"; echo "currentsong"; sleep .1; echo "q"; echo "close") |\
 		 telnet -e q $MPD_HOST 6600) # sleep .1 is the shortest reliable sleep time
-	_pl_status+=( [np]="${_pl_status[Artist]} - ${_pl_status[Title]} - ${_pl_status[Album]}" )
+
+	if [[ ${_pl_status[Name]} ]] ; then
+		_pl_status+=( [np]="${_pl_status[Title]}" )
+	else
+		_pl_status+=( [np]="${_pl_status[Artist]} - ${_pl_status[Title]} - ${_pl_status[Album]}" )
+	fi
 
 	mpc playlist -f "[%name%: ][%artist% - ]%title%[[ - %album%][ (%time%)]]" |\
 		GREP_COLORS=${_pl_grep_colors[${_pl_status[state]}]}\
