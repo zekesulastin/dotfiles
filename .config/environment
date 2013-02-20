@@ -12,7 +12,7 @@ export WINEARCH=win32
 if [[ $HOSTNAME == tsukikage ]]; then
 	export TERMINAL=termite
 else
-	export TERMINAL=urxvt
+	export TERMINAL=urxvtc
 fi
 
 if [[ $HOSTNAME == hoshiakari ]]; then
