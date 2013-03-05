@@ -9,10 +9,10 @@ export SDL_JOYSTICK_DEVICE=/dev/input/js0
 export WINEDLLOVERRIDES=winemenubuilder.exe=d
 export WINEARCH=win32
 
-if [[ $HOSTNAME == tsukikage ]]; then
-	export TERMINAL=termite
-else
+if [[ $HOSTNAME == meiousei ]]; then
 	export TERMINAL=urxvtc
+else
+	export TERMINAL=termite
 fi
 
 if [[ $HOSTNAME == hoshiakari ]]; then

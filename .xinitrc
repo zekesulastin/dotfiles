@@ -15,11 +15,8 @@ xset b off &
 xrdb -merge ~/.Xresources
 xrandr --dpi 96 &
 nitrogen --restore &
-if [ ! "$_xinithost" = "tsukikage" ]; then
+if [  "$_xinithost" = "meiousei" ]; then
 	urxvtd -q -o -f &
-fi
-
-if [ "$_xinithost" = "meiousei" ]; then
 	start-pulseaudio-x11 -n --file="$HOME/.pulse/meiousei.pa"
 else
 	start-pulseaudio-x11
