@@ -7,8 +7,7 @@
 . $XDG_CONFIG_HOME/environment
 [ -f ~/.bashrc ] && . ~/.bashrc
 
-
-if [ "$(fgconsole 2>/dev/null)" = "1" ]; then
+if [ "$(fgconsole 2>/dev/null)" -eq 1 ]; then
 	eval $(ssh-agent -s)
 	ssh-add
 	exec startx &>/dev/null
