@@ -14,6 +14,6 @@
 . "$XDG_CONFIG_HOME"/bash/infinality-settings
 . "$XDG_CONFIG_HOME"/bash/prompt
 . "$XDG_CONFIG_HOME"/bash/console-colors
-. "$XDG_CONFIG_HOME"/bash/mpc
+. /usr/share/bash-completion/bash_completion
 
 HISTCONTROL=ignoredups:ignorespace
