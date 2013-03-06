@@ -15,9 +15,10 @@ xset b off &
 xrdb -merge ~/.Xresources
 xrandr --dpi 96 &
 nitrogen --restore &
+
 if [  "$_xinithost" = "meiousei" ]; then
 	urxvtd -q -o -f &
-	start-pulseaudio-x11 -n --file="$HOME/.pulse/meiousei.pa"
+	start-pulseaudio-x11 -n --file="$XDG_CONFIG_HOME/pulse/meiousei.pa"
 else
 	start-pulseaudio-x11
 fi
