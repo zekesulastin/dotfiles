@@ -7,3 +7,6 @@
 [submodule ".config/urxvt/perls"]
 	path = .config/urxvt/perls
 	url = git://github.com/muennich/urxvt-perls.git
+[submodule ".vim/bundle/vim-dm-syntax"]
+	path = .vim/bundle/vim-dm-syntax
+	url = git://github.com/wlue/vim-dm-syntax.git
