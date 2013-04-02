@@ -14,9 +14,9 @@ set $white	#ffffff
 set $red	#cc0000
 # }}}
 # {{{ Font and Theming
-font xft:TamzenPL 8
+font pango:TamzenPL 8
 #font -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*
-#font xft:PragmataPro 8
+#font pango:PragmataPro 8
 
 # Border style
 new_window 1pixel
@@ -99,10 +99,10 @@ bindsym $mod+r mode "resize"
 # {{{ Status Bar
 bar {
 	status_command conkyi3bar
-	tray_output DVI-D-0
+#	tray_output DVI-D-0
 	position top
-	font xft:TamzenPL 8
-#	font xft:PragmataPro for Powerline 8
+	font pango:TamzenPL 8
+#	font pango:PragmataPro for Powerline 8
 #	font -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*
 	colors {
 		background $black
