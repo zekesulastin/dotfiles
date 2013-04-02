@@ -12,7 +12,7 @@ fi
 xset fp+ /home/zekesulastin/.fonts
 xset fp rehash
 xset b off &
-xrdb -merge ~/.Xresources
+xrdb -merge "$XDG_CONFIG_HOME/Xresources"
 xrandr --dpi 96 &
 nitrogen --restore &
 
@@ -23,6 +23,6 @@ else
 	start-pulseaudio-x11
 fi
 
-paplay --property=media.role=event "/home/zekesulastin/.pulse/Windows 98 Startup.wav" &
+paplay --property=media.role=event "$XDG_CONFIG_HOME/pulse/Windows 98 Startup.wav" &
 ponymix get-volume > /tmp/pvu.zekesulastin #cannot be backgrounded or conky chokes
 exec dbus-launch i3

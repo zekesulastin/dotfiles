@@ -1,24 +1,23 @@
 ! ----------------------------------------------------------------------------
-! file:     ~/.Xresources
-! author:  ZekeSulastin 
-! modified: 09 Aug 11
+! file:     Xresources
+! author:  ZekeSulastin
 ! vim:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
 ! ----------------------------------------------------------------------------
 
 Xft.dpi: 96
 Xft.rgba: rgb
 
-!URxvt.font: xft:PragmataPro for Powerline:pixelsize=13:antialias=true
-
+!URxvt.font: xft:PragmataPro for Powerline:size=10:antialias=true
+!URxvt.letterSpace: -1
 URxvt.font: -Misc-TamzenPL-Medium-R-Normal--14-101-100-100-C-70-ISO10646-1
 URxvt.boldFont: -Misc-TamzenPL-Bold-R-Normal--14-101-100-100-C-70-ISO10646-1
 URxvt.italicFont: -Misc-TamzenPL-Medium-I-Normal--14-101-100-100-C-70-ISO10646-1
 URxvt.bolditalicFont: -Misc-TamzenPL-Bold-I-Normal--14-101-100-100-C-70-ISO10646-1
 
-urxvt.scrollBar: off
-urxvt.inheritPixmap: true
-urxvt.transparent: true
-urxvt.shading: 25 
+URxvt.scrollBar: off
+URxvt.inheritPixmap: true
+URxvt.transparent: true
+URxvt.shading: 25
 
 *foreground: #aaaaaa
 *background: #000000
@@ -48,7 +47,7 @@ urxvt.shading: 25
 *color7            : #D3D7CF
 *color15           : #EEECEC
 
-URxvt.perl-lib: /home/zekesulastin/.config/urxvt/perls/
+URxvt.perl-lib: /home/zekesulastin/.config/URxvt/perls/
 URxvt.perl-ext-common:      default,url-select
 URxvt.keysym.M-u:    perl:url-select:select_next
 URxvt.url-select.button:     2
