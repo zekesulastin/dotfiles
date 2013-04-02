@@ -75,6 +75,8 @@
 .config/rtorrent
 .config/tmux-powerline
 .config/cifs
+.config/pulse
+.config/luakit
 !.vim/*
 !.vim/*/*
 .vim/doc
