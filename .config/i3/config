@@ -14,7 +14,7 @@ set $white	#ffffff
 set $red	#cc0000
 # }}}
 # {{{ Font and Theming
-font pango:TamzenPL 8
+font pango:TamzenPL 10
 #font -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*
 #font pango:PragmataPro 8
 
@@ -101,7 +101,7 @@ bar {
 	status_command conkyi3bar
 #	tray_output DVI-D-0
 	position top
-	font pango:TamzenPL 8
+	font pango:TamzenPL 10
 #	font pango:PragmataPro for Powerline 8
 #	font -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*
 	colors {
