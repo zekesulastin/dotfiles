@@ -1,0 +1,5 @@
+#!/bin/sh
+
+for pulse_server in tsukikage okaasan meiousei; do
+	(PULSE_SERVER=$pulse_server paplay --property=media.role=event "$HOME/.weechat/notify.wav" 2>/dev/null) &
+done
