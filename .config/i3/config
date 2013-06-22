@@ -153,4 +153,5 @@ for_window [class="Steam"] floating enable
 for_window [class="Pcsx2"] floating enable
 for_window [class="Download"] floating enable
 for_window [class="Jamestown-amd64"] floating enable
+for_window [title="StarMade alpha*"] floating enable
 # }}}
