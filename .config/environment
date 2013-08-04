@@ -17,8 +17,6 @@ fi
 
 if [[ $HOSTNAME == hoshiakari ]]; then
 	export BROWSER=elinks
-elif [[ $HOSTNAME == meiousei ]]; then
+elif
 	export BROWSER=luakit
-else
-	export BROWSER=firefox
 fi
