@@ -3,8 +3,8 @@
 alias less=$PAGER
 alias zless=$PAGER
 alias ls='ls --color=auto'
-alias du1='du -h --max-depth=1'
-alias ll='ls -alF'
+alias du1='du -h --max-depth=1 | sort -h'
+alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 alias grep='grep --color=auto'
@@ -18,9 +18,9 @@ alias ix="curl -sF 'f:1=<-' http://ix.io"
 alias fluidstart="(nohup fluidsynth -is -a pulseaudio -r 44100 /usr/share/soundfonts/Unison.sf2 >/dev/null 2>&1 &)"
 alias fluidstop="pkill fluidsynth"
 alias midiplay="aplaymidi --port 128:0"
-alias mpt="mplayer -ao pulse:tsukikage"
-alias mpm="mplayer -ao pulse:meiousei"
-alias mpo="mplayer -ao pulse:okaasan"
+alias mpt="mpv -ao pulse:tsukikage"
+alias mpm="mpv -ao pulse:meiousei"
+alias mpo="mpv -ao pulse:okaasan"
 
 powerdown () {
 	case "$HOSTNAME" in
@@ -28,7 +28,7 @@ powerdown () {
 			pkill firefox
 			poweroff ;;
 		"meiousei" )
-			sudo shutdown -h now ;;
+			sudo shutdown -P now ;;
 		"hoshiakari" )
 			echo >&2 "powerdown: this is your SERVER, br0" && return 255;;
 		* )
