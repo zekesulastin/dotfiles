@@ -17,7 +17,7 @@
 
     # alignment of message text.
     # Possible values are "left", "center" and "right"
-    alignment = center 
+    alignment = center
 
     # show age of message if message is older than show_age_threshold seconds.
     # set to -1 to disable
@@ -99,11 +99,11 @@
 
 [urgency_normal]
     background = "#333333"
-    foreground = "#ffffff"
+    foreground = "#aaaaaa"
     timeout = 10
 
 [urgency_critical]
-    background = "#ff0000"
+    background = "#cc0000"
     foreground = "#ffffff"
     timeout = 0
 
