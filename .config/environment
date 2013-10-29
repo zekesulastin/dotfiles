@@ -15,10 +15,20 @@ else
 	export TERMINAL=termite
 fi
 
-if [[ $HOSTNAME == hoshiakari ]]; then
-	export BROWSER=elinks
-elif [[ $HOSTNAME == meiousei ]]; then
-	export BROWSER=luakit
-else
-	export BROWSER=firefox
-fi
+case $HOSTNAME in
+	hoshiakari )
+		export BROWSER=elinks ;;
+	meiousei )
+		export BROWSER=luakit ;;
+	* )
+		export BROWSER=firefox ;;
+esac
+
+case $HOSTNAME in
+	tsukikage )
+		export TWITCH_OFFSET="+1920+0"
+		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_1b.0.analog-stereo.monitor" ;;
+	* )
+		export TWITCH_OFFSET="+1920+0"
+		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_10.1.analog-stereo.monitor" ;;
+esac
