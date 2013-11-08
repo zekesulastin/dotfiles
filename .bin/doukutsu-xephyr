@@ -1,0 +1,11 @@
+#!/bin/sh
+_display=0
+
+for f in /tmp/.X11-unix/*; do
+	_display=${f##*X}
+	((_display = $_display + 1 ))
+done
+
+Xephyr :"$_display" -br -reset -screen 640x480 -title "Doukutsu Monogatari" &
+DISPLAY=:"$_display" /usr/bin/doukutsu
+pkill Xephyr
