@@ -1,4 +1,4 @@
-141
+137
 Lucida grande bold.ttf -b&h-lucida grande-semibold-r-normal--0-0-0-0-p-0-adobe-standard
 Lucida grande bold.ttf -b&h-lucida grande-semibold-r-normal--0-0-0-0-p-0-ascii-0
 Lucida grande bold.ttf -b&h-lucida grande-semibold-r-normal--0-0-0-0-p-0-iso10646-1
@@ -84,10 +84,6 @@ PragmataPro-Z-Powerline.ttf -misc-pragmatapro for powerline-bold-i-normal--0-0-0
 PragmataPro-Z-Powerline.ttf -misc-pragmatapro for powerline-bold-i-normal--0-0-0-0-m-0-iso8859-1
 PragmataPro-Z-Powerline.ttf -misc-pragmatapro for powerline-bold-i-normal--0-0-0-0-m-0-iso8859-15
 PragmataPro-Z-Powerline.ttf -misc-pragmatapro for powerline-bold-i-normal--0-0-0-0-m-0-microsoft-cp1252
-TamzenPL7x14b.bdf -misc-tamzenpl-bold-r-normal--14-101-100-100-c-70-iso10646-1
-TamzenPL7x14i.bdf -misc-tamzenpl-medium-i-normal--14-101-100-100-c-70-iso10646-1
-TamzenPL7x14r.bdf -misc-tamzenpl-medium-r-normal--14-101-100-100-c-70-iso10646-1
-TamzenPL7x14z.bdf -misc-tamzenpl-bold-i-normal--14-101-100-100-c-70-iso10646-1
 msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-adobe-standard
 msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-ascii-0
 msgothic.ttc -ricoh-ms gothic-medium-r-normal--0-0-0-0-c-0-ibm-cp437
