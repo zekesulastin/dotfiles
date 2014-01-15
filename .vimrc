@@ -1,5 +1,7 @@
 " .vimrc!  vim settings!
 
+let $PYTHONPATH="/usr/lib/python3.3/site-packages"
+
 set nocompatible
 set backspace=indent,eol,start
 set history=50
@@ -32,16 +34,12 @@ call pathogen#infect()
 if has('gui_running')
 	let g:zenburn_high_Contrast=1
 	colorscheme zenburn
-	let g:Powerline_symbols = 'fancy'
-	let g:Powerline_colorscheme = 'default'
-	set guifont=PragmataPro\ for\ Powerline\ 10
+	set guifont="PragmataPro 10"
 elseif $TERM =~ 'xterm-termite' || $TERM =~ 'rxvt-unicode-256color'
 	set t_Co=256
 	let g:zenburn_high_Contrast=1
 	colorscheme zenburn
 	highlight Comment cterm=italic
-	let g:Powerline_symbols = 'fancy'
-	let g:Powerline_colorscheme = 'default'
 elseif $TERM =~ 'screen-256color'
 	set t_Co=256
 	let g:zenburn_high_Contrast=1
@@ -50,13 +48,9 @@ elseif $TERM =~ 'screen-256color'
 	"I want my damn italics, even in tmux.
 	set t_so=[7m
 	set t_ZH=[3m
-	let g:Powerline_symbols = 'fancy'
-	let g:Powerline_colorscheme = 'default'
 else
 	set t_Co=8
 	set bg=dark
-	let g:Powerline_symbols = 'compatible'
-	let g:Powerline_colorscheme = 'default'
 endif
 
 highlight ExtraWhitespace ctermbg=darkred guibg=darkred
@@ -67,3 +61,15 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 command W w !sudo tee % > /dev/null
+
+if ! has('gui_running')
+    set ttimeoutlen=10
+    augroup FastEscape
+        autocmd!
+        au InsertEnter * set timeoutlen=0
+        au InsertLeave * set timeoutlen=1000
+    augroup END
+endif
+
+set laststatus=2
+set noshowmode
