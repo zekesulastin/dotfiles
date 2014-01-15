@@ -4,7 +4,11 @@
 [ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
 [ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
 
-. $XDG_CONFIG_HOME/environment
+. "$XDG_CONFIG_HOME/environment"
+for profile in $XDG_CONFIG_HOME/profile.d/*; do
+	. "$profile"
+done
+unset profile
 [ -f ~/.bashrc ] && . ~/.bashrc
 
 if [ "$(fgconsole 2>/dev/null)" = "1" ]; then
