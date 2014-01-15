@@ -21,7 +21,7 @@ prompt_powerline() {
 	if [[ $TERM == 'linux' ]]; then
 		_div='>' _cap="";
 	else
-		_div='⮁' _cap="\[\e[0;30m\]⮀"
+		_div='' _cap="\[\e[0;30m\]"
 	fi
 
 # Switches the default blue ">" for a yellow " hostname >" if remote

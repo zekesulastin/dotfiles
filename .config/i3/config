@@ -14,9 +14,7 @@ set $white	#ffffff
 set $red	#cc0000
 # }}}
 # {{{ Font and Theming
-font pango:TamzenPL 10
-#font -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*
-#font pango:PragmataPro 8
+font pango:Monospace 11
 
 # Border style
 new_window 1pixel
@@ -101,9 +99,7 @@ bar {
 	status_command conkyi3bar
 #	tray_output DVI-D-0
 	position top
-	font pango:TamzenPL 10
-#	font pango:PragmataPro for Powerline 8
-#	font -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*
+	font pango:Monospace 11
 	colors {
 		background $black
 		statusline $bgrey
@@ -119,7 +115,7 @@ bar {
 # }}}
 # {{{ Program Keybinds
 bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+d exec "dmenu_run -p 'Run:' -fn -*-tamzenpl-medium-r-*-*-14-*-*-*-*-*-*-*"
+bindsym $mod+d exec "dmenu_run -p 'Run:' -fn Monospace-11"
 
 bindsym $mod+F2 exec "xlock"
 
