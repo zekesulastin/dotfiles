@@ -127,6 +127,15 @@ bindsym $mod+Down exec "mpc toggle"
 bindsym $mod+Left exec "mpc prev"
 bindsym $mod+Right exec "mpc next"
 
+bindsym XF86AudioPlay exec "mediacontrol --play"
+bindsym XF86AudioStop exec "mediacontrol --stop"
+bindsym XF86AudioNext exec "mediacontrol --next"
+bindsym Shift+XF86AudioNext exec "mediacontrol --seekf"
+bindsym Ctrl+XF86AudioNext exec "mediacontrol --skipf"
+bindsym XF86AudioPrev exec "mediacontrol --prev"
+bindsym Shift+XF86AudioPrev exec "mediacontrol --seekb"
+bindsym Ctrl+XF86AudioPrev exec "mediacontrol --skipb"
+
 bindsym $mod+Ctrl+v exec pavucontrol
 bindsym XF86AudioRaiseVolume exec "ponymix increase 4 > /tmp/pvu.zekesulastin && ponymix unmute"
 bindsym $mod+Shift+Up exec "ponymix increase 4 > /tmp/pvu.zekesulastin && ponymix unmute"

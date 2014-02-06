@@ -6,7 +6,7 @@ if [[ $HOSTNAME = "okaasan" ]]; then
 	i3-msg exec skype
 	i3-msg exec 'termite --geometry=720x480 --role="mpdpopup" --exec="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp' 2>/dev/null"'
 
-	sleep 10
+	sleep 30
 
 	i3-msg '[window_role="mpdpopup"] focus'
 	i3-msg move scratchpad
@@ -15,9 +15,11 @@ if [[ $HOSTNAME = "okaasan" ]]; then
 	i3-msg move left
 	i3-msg resize grow width 5 px or 5 ppt
 	i3-msg '[window_role="hoshiakari"] focus'
+	i3-msg move right
+	i3-msg move right
 	i3-msg split vertical
 	i3-msg '[class="Skype"] focus'
-	i3-msg move left
+	i3-msg move right
 	i3-msg '[window_role="hoshiakari"] focus'
 	i3-msg resize grow height 5 px or 5 ppt
 	i3-msg '[class="Firefox"] focus'

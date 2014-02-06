@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+_mpvfifo="$XDG_RUNTIME_DIR/mpv/input"
+
+if [[ $(pgrep mpv) ]]; then
+	case $1 in
+		--play )
+			echo "cycle pause" > $_mpvfifo ;;
+		--stop )
+			echo "stop" > $_mpvfifo ;;
+		--next )
+			echo "playlist_next" > $_mpvfifo ;;
+		--prev )
+			echo "playlist_prev" > $_mpvfifo ;;
+		--seekf )
+			echo "seek 30" > $_mpvfifo ;;
+		--seekb )
+			echo "seek -30" > $_mpvfifo ;;
+		--skipf )
+			echo "add chapter 1" > $_mpvfifo ;;
+		--skipb )
+			echo "add chapter -1" > $_mpvfifo ;;
+	esac
+else
+	case $1 in
+		--play )
+			mpc toggle ;;
+		--stop )
+			mpc stop ;;
+		--next )
+			mpc next ;;
+		--prev )
+			mpc prev ;;
+		--seekf )
+			mpc seek +00:00:10 ;;
+		--seekb )
+			mpc seek -00:00:10 ;;
+		* )
+			;;
+	esac
+fi
+
+unset _mpvfifo
