@@ -27,13 +27,13 @@ EOF
 
 		for _browser in "$BROWSER" firefox chromium konquerer rekonq midori jumanji dwb luakit uzbl w3m; do
 			if which "$_browser" > /dev/null 2>&1; then
-				exec "$_browser" /tmp/fortune.html
+				exec "$_browser"
 			fi
 		done ;;
 	"" )
 		for _browser in "$BROWSER" firefox chromium konquerer rekonq midori jumanji dwb luakit uzbl w3m; do
 			if which "$_browser" > /dev/null 2>&1; then
-				exec "$_browser" /tmp/fortune.html
+				exec "$_browser"
 			fi
 		done ;;
 	* )

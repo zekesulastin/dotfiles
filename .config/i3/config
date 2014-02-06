@@ -46,6 +46,7 @@ bindsym $mod+v split v
 
 bindsym $mod+f fullscreen
 
+bindsym XF86AudioMedia scratchpad show
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout default
@@ -152,3 +153,5 @@ for_window [class="Jamestown-amd64"] floating enable
 for_window [title="StarMade alpha*"] floating enable
 for_window [class="Xephyr"] floating enable
 # }}}
+
+exec --no-startup-id i3autoexec
