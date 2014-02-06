@@ -7,12 +7,8 @@
 Xft.dpi: 96
 Xft.rgba: rgb
 
-!URxvt.font: xft:PragmataPro for Powerline:size=10:antialias=true
+URxvt.font: xft:Monospace:size=10:antialias=true
 !URxvt.letterSpace: -1
-URxvt.font: -Misc-TamzenPL-Medium-R-Normal--14-101-100-100-C-70-ISO10646-1
-URxvt.boldFont: -Misc-TamzenPL-Bold-R-Normal--14-101-100-100-C-70-ISO10646-1
-URxvt.italicFont: -Misc-TamzenPL-Medium-I-Normal--14-101-100-100-C-70-ISO10646-1
-URxvt.bolditalicFont: -Misc-TamzenPL-Bold-I-Normal--14-101-100-100-C-70-ISO10646-1
 
 URxvt.scrollBar: off
 URxvt.inheritPixmap: true
