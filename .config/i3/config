@@ -92,6 +92,18 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+mode "appfocus" {
+		bindsym w exec "i3focushelper browser"
+		bindsym h exec "i3focushelper hoshiakari"
+		bindsym s exec "i3focushelper Skype"
+		bindsym v exec "i3focushelper mpv"
+
+		bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+F mode "appfocus"
 # }}}
 # {{{ Status Bar
 bar {
@@ -141,7 +153,6 @@ bindsym XF86AudioLowerVolume exec "ponymix decrease 4 > /tmp/pvu.zekesulastin &&
 bindsym $mod+Shift+Down exec "ponymix decrease 4 > /tmp/pvu.zekesulastin && ponymix unmute"
 bindsym XF86AudioMute exec "ponymix toggle > /tmp/pvu.zekesulastin; ponymix is-muted && echo 0 > /tmp/pvu.zekesulastin"
 bindsym $mod+Shift+M exec "ponymix toggle > /tmp/pvu.zekesulastin; ponymix is-muted && echo 0 > /tmp/pvu.zekesulastin"
-
 
 bindsym XF86Sleep exec "systemctl suspend"
 # }}}

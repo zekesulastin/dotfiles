@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+case $1 in
+	hoshiakari )
+		i3-msg [window_role="hoshiakari"] focus
+		i3-msg mode "default" ;;
+	browser )
+		i3-msg [class="$BROWSER"] focus
+		i3-msg mode "default" ;;
+	* )
+		i3-msg [class="$1"] focus
+		i3-msg mode "default" ;;
+esac
