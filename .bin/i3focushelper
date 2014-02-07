@@ -5,7 +5,7 @@ case $1 in
 		i3-msg [window_role="hoshiakari"] focus
 		i3-msg mode "default" ;;
 	browser )
-		i3-msg [class="$BROWSER"] focus
+		i3-msg [class="Firefox"] focus
 		i3-msg mode "default" ;;
 	* )
 		i3-msg [class="$1"] focus
