@@ -4,9 +4,9 @@ alias less=$PAGER
 alias zless=$PAGER
 alias ls='ls --color=auto'
 alias du1='du -h --max-depth=1 | sort -h'
-alias ll='ls -alFh'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='ls -alFh --group-directories-first'
+alias la='ls -A --group-directories-first'
+alias l='ls -CF --group-directories-first'
 alias grep='grep --color=auto'
 alias msi='makepkg -si'
 alias syu='pacaur -Syu'
