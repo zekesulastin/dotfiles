@@ -147,12 +147,12 @@ bindsym Shift+XF86AudioPrev exec "mediacontrol --seekb"
 bindsym Ctrl+XF86AudioPrev exec "mediacontrol --skipb"
 
 bindsym $mod+Ctrl+v exec pavucontrol
-bindsym XF86AudioRaiseVolume exec "ponymix increase 4 > /tmp/pvu.zekesulastin && ponymix unmute"
-bindsym $mod+Shift+Up exec "ponymix increase 4 > /tmp/pvu.zekesulastin && ponymix unmute"
-bindsym XF86AudioLowerVolume exec "ponymix decrease 4 > /tmp/pvu.zekesulastin && ponymix unmute"
-bindsym $mod+Shift+Down exec "ponymix decrease 4 > /tmp/pvu.zekesulastin && ponymix unmute"
-bindsym XF86AudioMute exec "ponymix toggle > /tmp/pvu.zekesulastin; ponymix is-muted && echo 0 > /tmp/pvu.zekesulastin"
-bindsym $mod+Shift+M exec "ponymix toggle > /tmp/pvu.zekesulastin; ponymix is-muted && echo 0 > /tmp/pvu.zekesulastin"
+bindsym XF86AudioRaiseVolume exec "ponymix increase 4 > $XDG_RUNTIME_DIR/pulse/pvu && ponymix unmute"
+bindsym $mod+Shift+Up exec "ponymix increase 4 > $XDG_RUNTIME_DIR/pulse/pvu && ponymix unmute"
+bindsym XF86AudioLowerVolume exec "ponymix decrease 4 > $XDG_RUNTIME_DIR/pulse/pvu && ponymix unmute"
+bindsym $mod+Shift+Down exec "ponymix decrease 4 > $XDG_RUNTIME_DIR/pulse/pvu && ponymix unmute"
+bindsym XF86AudioMute exec "ponymix toggle > $XDG_RUNTIME_DIR/pulse/pvu; ponymix is-muted && echo 0 > $XDG_RUNTIME_DIR/pulse/pvu"
+bindsym $mod+Shift+M exec "ponymix toggle > $XDG_RUNTIME_DIR/pulse/pvu; ponymix is-muted && echo 0 > $XDG_RUNTIME_DIR/pulse/pvu"
 
 bindsym XF86Sleep exec "systemctl suspend"
 # }}}
