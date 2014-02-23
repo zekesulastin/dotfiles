@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+
+# (As the name implies) Based on the visual style of vim-powerline.
+# Original prompt based on falconindy's, but that's been mostly replaced.
+
+# Generates a prompt that looks roughly like
+# >>> ~/path/to/src
+# Where the first > (blue) represents a local tty, the second > (green)
+# 	represents a non-su'd non-root tty, while the third > (magenta)
+#	represents a git repo, branch "master", untouched.
+# These > expand and change color as desrcribed by the conditionals below.
+# The xterm/rxvt window title is set as if it were a colorless console.
+
+# Colors
+	_prompt_none="\[\e[0m\]"
+
+	_prompt_host_local="\[\e[0;37;44m\]"
+	_prompt_host_remote="\[\e[0;30;43m\]"
+
+	_prompt_ligature_blu2grn="\[\e[0;34;42m\]"
+	_prompt_ligature_blu2red="\[\e[0;34;41m\]"
+	_prompt_ligature_ylw2grn="\[\e[0;33;42m\]"
+	_prompt_ligature_ylw2red="\[\e[0;33;41m\]"
+
+	_prompt_user_normal="\[\e[0;30;42m\]"
+	_prompt_user_root="\[\e[0;37;41m\]"
+
+	_prompt_ligature_grn2mgn="\[\e[0;32;45m\]"
+	_prompt_ligature_red2mgn="\[\e[0;31;45m\]"
+	_prompt_ligature_grn2wht="\[\e[0;32;47m\]"
+	_prompt_ligature_red2wht="\[\e[0;31;47m\]"
+	_prompt_ligature_grn2blk="\[\e[0;32;40m\]"
+	_prompt_ligature_red2blk="\[\e[0;31;40m\]"
+
+	_prompt_return_value="\[\e[1;31;47m\]"
+
+	_prompt_ligature_wht2mgn="\[\e[0;37;45m\]"
+	_prompt_ligature_wht2blk="\[\e[0;37;40m\]"
+
+	_prompt_git_status="\[\e[0;37;45m\]"
+
+	_prompt_ligature_mgn2blk="\[\e[0;35;40m\]"
+
+	_prompt_pwd="\[\e[0;36;40m\]"
+	_prompt_src="\[\e[0;37;40m\]"
+
+	_prompt_ligature_blk2dft="\[\e[0;30m\]"
+
+_prompt_powerline() {
+	local _ret_value=$?
+	local _git_branch_ps1="$(__git_ps1 %s)"
+
+	if [[ $TERM == 'linux' ]]; then
+		_prompt_div=""
+	else
+		_prompt_div=""
+	fi
+
+	if [[ ! $SSH_TTY ]]; then
+		local _host="$_prompt_host_local "
+	else
+		local _host="$_prompt_host_remote \h "
+	fi
+
+	if [[ ! $SSH_TTY ]]; then
+		if (( UID == 0 )); then
+			local _host_div="$_prompt_ligature_blu2red$_prompt_div"
+		else
+			local _host_div="$_prompt_ligature_blu2grn$_prompt_div"
+		fi
+	else
+		if (( UID == 0 )); then
+			local _host_div="$_prompt_ligature_ylw2red$_prompt_div"
+		else
+			local _host_div="$_prompt_ligature_ylw2grn$_prompt_div"
+		fi
+	fi
+
+	if (( UID == 1000 )); then
+		local _user=""
+	elif (( UID == 0 )); then
+		local _user="$_prompt_user_root \u "
+	else
+		local _user="$_prompt_user_normal \u ";
+	fi
+
+	if (( _ret_value )); then
+		if (( UID == 0 )); then
+			local _user_div="$_prompt_ligature_red2wht$_prompt_div"
+		else
+			local _user_div="$_prompt_ligature_grn2wht$_prompt_div"
+		fi
+	elif [[ $_git_branch_ps1 ]]; then
+		if (( UID == 0 )); then
+			local _user_div="$_prompt_ligature_red2mgn$_prompt_div"
+		else
+			local _user_div="$_prompt_ligature_grn2mgn$_prompt_div"
+		fi
+	else
+		if (( UID == 0 )); then
+			local _user_div="$_prompt_ligature_red2blk$_prompt_div"
+		else
+			local _user_div="$_prompt_ligature_grn2blk$_prompt_div"
+		fi
+	fi
+
+	local _ret=$(
+	if (( _ret_value )); then
+		if [[ $_git_branch_ps1 ]]; then
+			printf "$_prompt_return_value $_ret_value $_prompt_ligature_wht2mgn$_prompt_div"
+		else
+			printf "$_prompt_return_value $_ret_value $_prompt_ligature_wht2blk$_prompt_div"
+		fi
+	fi )
+
+	local _git=$(
+	if [[ "$_git_branch_ps1" == "master" ]]; then
+		printf "$_prompt_ligature_mgn2blk$_prompt_div"
+	elif [[ $_git_branch_ps1 ]]; then
+		printf "$_prompt_git_status $_git_branch_ps1 $_prompt_ligature_mgn2blk$_prompt_div"
+	fi )
+
+	local _pwd=$(
+	IFS=/ read -a _pwdparts <<< "$PWD"
+	if [[ "${_pwdparts[3]}" == "src" ]] && [[ ${_pwdparts[4]} ]]; then
+		printf "$_prompt_src ${_pwdparts[4]}$_prompt_pwd"
+		if [[ ${_pwdparts[5]} ]]; then
+			printf "/${_pwdparts[*]:5}"
+		fi
+	else
+		printf "$_prompt_pwd \w"
+	fi )
+
+	_pwd_div="$_prompt_ligature_blk2dft$_prompt_div$_prompt_none"
+
+	PS1=''
+
+	export PS1="$_host$_host_div$_user$_user_div$_ret$_git$_pwd$_pwd_div "
+}
+
+PROMPT_COMMAND=_prompt_powerline
+GIT_PS1_SHOWDIRTYSTATE=yes
