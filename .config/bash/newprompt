@@ -1,15 +1,6 @@
 #!/usr/bin/env bash
 
 # (As the name implies) Based on the visual style of vim-powerline.
-# Original prompt based on falconindy's, but that's been mostly replaced.
-
-# Generates a prompt that looks roughly like
-# >>> ~/path/to/src
-# Where the first > (blue) represents a local tty, the second > (green)
-# 	represents a non-su'd non-root tty, while the third > (magenta)
-#	represents a git repo, branch "master", untouched.
-# These > expand and change color as desrcribed by the conditionals below.
-# The xterm/rxvt window title is set as if it were a colorless console.
 
 # Colors
 	_prompt_none="\[\e[0m\]"
