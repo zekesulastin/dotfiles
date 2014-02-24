@@ -14,6 +14,9 @@
 # Colors
 	_prompt_none="\[\e[0m\]"
 
+	_prompt_ligature_blk2blu="\[\e[0;30;44m\]"
+	_prompt_ligature_blk2ylw="\[\e[0;30;43m\]"
+
 	_prompt_host_local="\[\e[0;37;44m\]"
 	_prompt_host_remote="\[\e[0;30;43m\]"
 
@@ -57,9 +60,9 @@ _prompt_powerline() {
 	fi
 
 	if [[ ! $SSH_TTY ]]; then
-		local _host="$_prompt_host_local "
+		local _host="$_prompt_ligature_blk2blu$_prompt_div"
 	else
-		local _host="$_prompt_host_remote \h "
+		local _host="$_prompt_ligature_blk2ylw$_prompt_div$_prompt_host_remote \h "
 	fi
 
 	if [[ ! $SSH_TTY ]]; then
