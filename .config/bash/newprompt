@@ -54,8 +54,8 @@ _prompt_powerline() {
 	local _ret_value=$?
 	local _git_branch_ps1="$(__git_ps1 %s)"
 
-	if [[ $TERM == 'linux' ]]; then
-		_prompt_div=""
+	if [[ $TERM == 'linux' ]] || [[ -e "$XDG_RUNTIME_DIR/androidterm" ]]; then
+		_prompt_div="▌"
 	else
 		_prompt_div=""
 	fi

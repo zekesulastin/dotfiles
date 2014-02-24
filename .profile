@@ -4,6 +4,12 @@
 [ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
 [ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
 
+if [ "$TERM" = "screen" ]; then
+	touch "$XDG_RUNTIME_DIR/androidterm"
+else
+	rm "$XDG_RUNTIME_DIR/androidterm" 2>/dev/null
+fi
+
 for profile in $XDG_CONFIG_HOME/profile.d/*; do
 	. "$profile"
 done
