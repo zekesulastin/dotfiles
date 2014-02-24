@@ -36,6 +36,7 @@
 	_prompt_ligature_red2blk="\[\e[0;31;40m\]"
 
 	_prompt_return_value="\[\e[1;31;47m\]"
+	_prompt_return_value2="\[\e[1;31;40m\]"
 
 	_prompt_ligature_wht2mgn="\[\e[0;37;45m\]"
 	_prompt_ligature_wht2blk="\[\e[0;37;40m\]"
@@ -60,9 +61,9 @@ _prompt_powerline() {
 	fi
 
 	if [[ ! $SSH_TTY ]]; then
-		local _host="$_prompt_ligature_blk2blu$_prompt_div"
+		local _host=""
 	else
-		local _host="$_prompt_ligature_blk2ylw$_prompt_div$_prompt_host_remote \h "
+		local _host="$_prompt_host_remote \h "
 	fi
 
 	if [[ ! $SSH_TTY ]]; then
@@ -87,13 +88,7 @@ _prompt_powerline() {
 		local _user="$_prompt_user_normal \u ";
 	fi
 
-	if (( _ret_value )); then
-		if (( UID == 0 )); then
-			local _user_div="$_prompt_ligature_red2wht$_prompt_div"
-		else
-			local _user_div="$_prompt_ligature_grn2wht$_prompt_div"
-		fi
-	elif [[ $_git_branch_ps1 ]]; then
+	if [[ $_git_branch_ps1 ]]; then
 		if (( UID == 0 )); then
 			local _user_div="$_prompt_ligature_red2mgn$_prompt_div"
 		else
@@ -107,13 +102,29 @@ _prompt_powerline() {
 		fi
 	fi
 
-	local _ret=$(
+#	local _ret=$(
+#	if (( _ret_value )); then
+#		if [[ $_git_branch_ps1 ]]; then
+#			printf "$_prompt_return_value $_ret_value $_prompt_ligature_wht2mgn$_prompt_div"
+#		else
+#			printf "$_prompt_return_value $_ret_value $_prompt_ligature_wht2blk$_prompt_div"
+#		fi
+#	fi )
+
+	local _ret2=$(
 	if (( _ret_value )); then
-		if [[ $_git_branch_ps1 ]]; then
-			printf "$_prompt_return_value $_ret_value $_prompt_ligature_wht2mgn$_prompt_div"
+		if [[ $SSH_TTY ]]; then
+			printf "$_prompt_return_value2 $_ret_value $_prompt_ligature_blk2ylw$_prompt_div"
 		else
-			printf "$_prompt_return_value $_ret_value $_prompt_ligature_wht2blk$_prompt_div"
+			printf "$_prompt_return_value2 $_ret_value $_prompt_ligature_blk2blu$_prompt_div"
 		fi
+	else
+		if [[ $SSH_TTY ]]; then
+			printf "$_prompt_ligature_blk2ylw$_prompt_div"
+		else
+			printf "$_prompt_ligature_blk2blu$_prompt_div"
+		fi
+
 	fi )
 
 	local _git=$(
@@ -138,9 +149,8 @@ _prompt_powerline() {
 
 	_pwd_div="$_prompt_ligature_blk2dft$_prompt_div$_prompt_none"
 
-	PS1=''
 
-	export PS1="$_host$_host_div$_user$_user_div$_ret$_git$_pwd$_pwd_div "
+	export PS1="$_ret2$_host$_host_div$_user$_user_div$_git$_pwd$_pwd_div "
 }
 
 PROMPT_COMMAND=_prompt_powerline
