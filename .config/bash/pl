@@ -73,4 +73,5 @@ _pl_show_playlist () {
 		grep -nFTC 1000 --color "${_pl_status[np]}"
 }
 
+. /usr/share/bash-completion/completions/mpc
 complete -o nospace -F _mpc pl
