@@ -62,8 +62,10 @@ _prompt_powerline() {
 
 	if [[ ! $SSH_TTY ]]; then
 		local _host=""
+		local _term_title_host=">"
 	else
 		local _host="$_prompt_host_remote \h "
+		local _term_title_host="$HOSTNAME>"
 	fi
 
 	if [[ ! $SSH_TTY ]]; then
@@ -82,10 +84,13 @@ _prompt_powerline() {
 
 	if (( UID == 1000 )); then
 		local _user=""
+		local _term_title_user=">"
 	elif (( UID == 0 )); then
 		local _user="$_prompt_user_root \u "
+		local _term_title_user="root>"
 	else
 		local _user="$_prompt_user_normal \u ";
+		local _term_title_user="$USER>"
 	fi
 
 	if [[ $_git_branch_ps1 ]]; then
@@ -111,46 +116,57 @@ _prompt_powerline() {
 #		fi
 #	fi )
 
-	local _ret2=$(
 	if (( _ret_value )); then
 		if [[ $SSH_TTY ]]; then
-			printf "$_prompt_return_value2 $_ret_value $_prompt_ligature_blk2ylw$_prompt_div"
+			local _ret="$_prompt_return_value2 $_ret_value $_prompt_ligature_blk2ylw$_prompt_div"
 		else
-			printf "$_prompt_return_value2 $_ret_value $_prompt_ligature_blk2blu$_prompt_div"
+			local _ret="$_prompt_return_value2 $_ret_value $_prompt_ligature_blk2blu$_prompt_div"
 		fi
+		local _term_title_ret="$_ret_value|"
 	else
 		if [[ $SSH_TTY ]]; then
-			printf "$_prompt_ligature_blk2ylw$_prompt_div"
+			local _ret="$_prompt_ligature_blk2ylw$_prompt_div"
 		else
-			printf "$_prompt_ligature_blk2blu$_prompt_div"
+			local _ret="$_prompt_ligature_blk2blu$_prompt_div"
 		fi
 
-	fi )
+	fi
 
-	local _git=$(
 	if [[ "$_git_branch_ps1" == "master" ]]; then
-		printf "$_prompt_ligature_mgn2blk$_prompt_div"
+		local _git="$_prompt_ligature_mgn2blk$_prompt_div"
+		local _term_title_git=">"
 	elif [[ $_git_branch_ps1 ]]; then
-		printf "$_prompt_git_status $_git_branch_ps1 $_prompt_ligature_mgn2blk$_prompt_div"
-	fi )
+		local _git="$_prompt_git_status $_git_branch_ps1 $_prompt_ligature_mgn2blk$_prompt_div"
+		local _term_title_git="$_git_branch_ps1>"
+	fi
 
 	local _pwd=$(
-	IFS=/ read -a _pwdparts <<< "$PWD"
-	if [[ "${_pwdparts[3]}" == "src" ]] && [[ ${_pwdparts[4]} ]]; then
-		printf "$_prompt_src ${_pwdparts[4]}$_prompt_pwd"
-		if [[ ${_pwdparts[5]} ]]; then
-			for i in ${_pwdparts[*]:5}; do
-				printf "/$i"
-			done
-		fi
+		IFS=/ read -a _pwdparts <<< "$PWD"
+		if [[ "${_pwdparts[3]}" == "src" ]] && [[ ${_pwdparts[4]} ]]; then
+			printf "$_prompt_src ${_pwdparts[4]}$_prompt_pwd"
+			if [[ ${_pwdparts[5]} ]]; then
+				for i in ${_pwdparts[*]:5}; do
+					printf "/$i"
+				done
+			fi
+		else
+			printf "$_prompt_pwd \w"
+		fi )
+
+	case $TERM in
+		xterm*|rxvt*)
+			local _term_title="\[\e]2;$_term_title_ret$_term_title_host$_term_title_user$_term_title_git \w\007\]" ;;
+		*)
+			local _term_title="" ;;
+	esac
+
+	if [[ $TERM == "linux" ]]; then
+		_pwd_div=" \$$_prompt_none"
 	else
-		printf "$_prompt_pwd \w"
-	fi )
+		_pwd_div="$_prompt_ligature_blk2dft$_prompt_div$_prompt_none"
+	fi
 
-	_pwd_div="$_prompt_ligature_blk2dft$_prompt_div$_prompt_none"
-
-
-	export PS1="$_ret2$_host$_host_div$_user$_user_div$_git$_pwd$_pwd_div "
+	export PS1="$_term_title$_ret$_host$_host_div$_user$_user_div$_git$_pwd$_pwd_div "
 }
 
 PROMPT_COMMAND=_prompt_powerline
