@@ -2,7 +2,7 @@
 
 if [[ $HOSTNAME = "okaasan" ]]; then
 	i3-msg exec "zekes-sensible-browser -f"
-	i3-msg exec 'termite --role="hoshiakari" --exec="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 tmux -2 a'"'
+	i3-msg exec 'termite --role="hoshiakari" --exec="ssh hoshiakari"'
 	i3-msg exec skype
 	i3-msg exec 'termite --geometry=720x480 --role="mpdpopup" --exec="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp' 2>/dev/null"'
 
