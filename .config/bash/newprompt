@@ -46,7 +46,7 @@ _prompt_powerline() {
 	local _git_branch_ps1="$(__git_ps1 %s)"
 
 	if [[ $TERM == 'linux' ]] || [[ -e "$XDG_RUNTIME_DIR/androidterm" ]]; then
-		_prompt_div="▌"
+		_prompt_div="▓"
 	else
 		_prompt_div=""
 	fi
@@ -158,6 +158,9 @@ _prompt_powerline() {
 	fi
 
 	export PS1="$_term_title$_ret$_host$_host_div$_user$_user_div$_git$_pwd$_pwd_div "
+	export PS2="$_prompt_src cont'd$_prompt_ligature_blk2dft$_prompt_div$prompt_none "
+	export PS3="$_prompt_src Select$_prompt_ligature_blk2dft$_prompt_div$prompt_none "
+	export PS4="$0 $LINENO: "
 }
 
 PROMPT_COMMAND=_prompt_powerline
