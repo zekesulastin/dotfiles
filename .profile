@@ -5,7 +5,7 @@
 [ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
 
 if [ -z "$TMUX" ]; then
-	if [ ! "$TERM" = "rxvt*" ] || [ ! "$TERM" = "xterm-termite" ]; then
+	if [ ! "$TERM" = "rxvt*" ] && [ ! "$TERM" = "xterm-termite" ]; then
 		touch "$XDG_RUNTIME_DIR/androidterm"
 	else
 		rm "$XDG_RUNTIME_DIR/androidterm" 2>/dev/null
