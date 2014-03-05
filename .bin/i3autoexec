@@ -1,6 +1,6 @@
 #/usr/bin/env bash
 
-if [[ $HOSTNAME = "okaasan" ]]; then
+if [[ $HOSTNAME = "naiyuusei" ]]; then
 	i3-msg exec "zekes-sensible-browser -f"
 	i3-msg exec 'termite --role="hoshiakari" --exec="ssh hoshiakari"'
 	i3-msg exec skype

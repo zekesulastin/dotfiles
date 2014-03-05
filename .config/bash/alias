@@ -20,7 +20,7 @@ alias fluidstop="pkill fluidsynth"
 alias midiplay="aplaymidi --port 128:0"
 alias mpt="mpv -ao pulse:tsukikage"
 alias mpm="mpv -ao pulse:meiousei"
-alias mpo="mpv -ao pulse:okaasan"
+alias mpn="mpv -ao pulse:naiyuusei"
 ..() {
 	local _dirs=1
 	if [[ $1 -ge 1 ]]; then
@@ -34,7 +34,7 @@ alias mpo="mpv -ao pulse:okaasan"
 
 powerdown () {
 	case "$HOSTNAME" in
-		"tsukikage" | "okaasan" )
+		"tsukikage" | "naiyuusei" )
 			pkill firefox
 			poweroff ;;
 		"meiousei" )
