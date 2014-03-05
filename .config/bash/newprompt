@@ -41,6 +41,15 @@
 
 	_prompt_ligature_blk2dft="\[\e[0;30m\]"
 
+if [ -z "$TMUX" ]; then
+	case "$TERM" in
+		rxvt* | xterm-termite )
+			rm "$XDG_RUNTIME_DIR/androidterm" 2>/dev/null ;;
+		* )
+			touch "$XDG_RUNTIME_DIR/androidterm" ;;
+	esac
+fi
+
 _prompt_powerline() {
 	local _ret_value=$?
 	local _git_branch_ps1="$(__git_ps1 %s)"
