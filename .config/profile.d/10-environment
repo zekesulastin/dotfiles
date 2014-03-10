@@ -1,0 +1,36 @@
+export EDITOR=vim
+export PAGER=less
+export MANPAGER=vimpager
+export _JAVA_AWT_WM_NONREPARENTING=1
+export PATH="$HOME/.bin":"$PATH"
+export MPD_HOST=192.168.1.101
+export GTK2_RC_FILES=$HOME/.config/gtk-2.0/gtkrc-2.0
+export SDL_JOYSTICK_DEVICE=/dev/input/js0
+export WINEDLLOVERRIDES=winemenubuilder.exe=d
+export WINEARCH=win32
+export MPV_HOME="$XDG_CONFIG_HOME/mpv"
+export _mpvfifo="$XDG_RUNTIME_DIR/mpv/input"
+
+if [[ $HOSTNAME == meiousei ]]; then
+	export TERMINAL=urxvtc
+else
+	export TERMINAL=termite
+fi
+
+case $HOSTNAME in
+	hoshiakari )
+		export BROWSER=elinks ;;
+	meiousei )
+		export BROWSER=luakit ;;
+	* )
+		export BROWSER=firefox ;;
+esac
+
+case $HOSTNAME in
+	tsukikage )
+		export TWITCH_OFFSET="+1920+0"
+		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_1b.0.analog-stereo.monitor" ;;
+	* )
+		export TWITCH_OFFSET="+1920+0"
+		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_10.1.analog-stereo.monitor" ;;
+esac

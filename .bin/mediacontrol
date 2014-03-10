@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-_mpvfifo="$XDG_RUNTIME_DIR/mpv/input"
-
 if [[ $(pgrep mpv) ]]; then
 	case $1 in
 		--play )
@@ -20,6 +18,21 @@ if [[ $(pgrep mpv) ]]; then
 			echo "add chapter 1" > $_mpvfifo ;;
 		--skipb )
 			echo "add chapter -1" > $_mpvfifo ;;
+		* )
+			;;
+	esac
+elif [[ $(pgrep audacious) ]]; then
+	case $1 in
+		--play )
+			audacious -t ;;
+		--stop )
+			audacious -s ;;
+		--next )
+			audacious -f ;;
+		--prev )
+			audacious -r ;;
+		* )
+			;;
 	esac
 else
 	case $1 in
@@ -39,5 +52,3 @@ else
 			;;
 	esac
 fi
-
-unset _mpvfifo
