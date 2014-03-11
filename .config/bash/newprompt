@@ -45,6 +45,8 @@ if [ -z "$TMUX" ]; then
 	case "$TERM" in
 		rxvt* | xterm-termite )
 			rm "$XDG_RUNTIME_DIR/androidterm" 2>/dev/null ;;
+		screen-256color )
+			;;
 		* )
 			touch "$XDG_RUNTIME_DIR/androidterm" ;;
 	esac
