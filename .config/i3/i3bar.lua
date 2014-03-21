@@ -102,11 +102,7 @@ end
 function conky_ram()
 	local ram_usage = tonumber(conky_parse("${memperc}"))
 	if ram_usage >= 85 then
-		local f = io.open(xdg_runtime_dir..'lowmem-is-working','r')
-		if f == nil then
-			os.execute("lowmem-warning-kill "..ram_usage)
-		end
-		f:close()
+		os.execute("lowmem-warning-kill "..ram_usage.." &>/dev/null &")
 		return json_wrap("!",gyr(ram_usage),0,0)
 	else
 		return json_wrap("R",gyr(ram_usage),0,0)
