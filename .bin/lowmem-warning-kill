@@ -8,20 +8,33 @@ _nokill() {
 		if [[ $((_i % 2)) = 0 ]]; then
 			notify-send --urgency=critical --expire-time=1250 --icon=dialog-error "RAM Critical!" "RAM is <b>$1%</b> full.  Killing <b>$2</b> in $_i seconds; touch <i>$XDG_RUNTIME_DIR/nokill</i> to abort."
 		fi
+
 		if [[ -e "$XDG_RUNTIME_DIR/nokill" ]]; then
 			notify-send --urgency=critical --icon=dialog-warning "NOKILL detected!" "I hope you know what you're doing, space cowboy; rm <i>$XDG_RUNTIME_DIR/nokill</i> as soon as you are done."
 			return
 		fi
+
 		sleep 1
 		_i=$((_i - 1))
 	done
+
 	pkill $2
 	notify-send --urgency=critical --icon=dialog-warning "$2 killed!" "We are sorry for any inconvenience this may have caused."
 }
 
 if  (( $1 < 90 )); then
 	pkill dunst
-	notify-send --urgency=critical --icon=dialog-warning "RAM Low!" "RAM is <b>$1%</b> full."
+
+	if [[ ! -e "$XDG_RUNTIME_DIR/lowmem-warn-time" ]]; then
+		command date +%s > "$XDG_RUNTIME_DIR/lowmem-warn-time"
+	fi
+	_warned_time=$(<"$XDG_RUNTIME_DIR/lowmem-warn-time")
+	_current_time=$(command date +%s)
+
+	if (( $((_current_time - _warned_time)) > 60 )); then
+		notify-send --urgency=critical --icon=dialog-warning "RAM Low!" "RAM is <b>$1%</b> full."
+		printf "%d" $_current_time > "$XDG_RUNTIME_DIR/lowmem-warn-time"
+	fi
 elif [[ $(pgrep firefox) ]]; then
 	_nokill $1 firefox
 elif [[ $(pgrep skype) ]]; then
