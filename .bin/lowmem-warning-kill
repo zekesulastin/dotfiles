@@ -20,10 +20,15 @@ _nokill() {
 
 	pkill $2
 	notify-send --urgency=critical --icon=dialog-warning "$2 killed!" "We are sorry for any inconvenience this may have caused."
-	rm "$XDG_RUNTIME_DIR/lowmem-is-working"
 }
 
-if [[ -e "$XDG_RUNTIME_DIR/lowmem-suppress" ]] || [[ -e "$XDG_RUNTIME_DIR/lowmem-is-working" ]]; then
+if mkdir "$XDG_RUNTIME_DIR/lowmem-warning-kill.lock" 2>/dev/null; then
+	trap 'rm -rf "$XDG_RUNTIME_DIR/lowmem-warning-kill.lock"' EXIT HUP INT QUIT TERM SEGV
+else
+	exit
+fi
+
+if [[ -e "$XDG_RUNTIME_DIR/lowmem-suppress" ]]; then
 	exit
 fi
 
@@ -38,14 +43,12 @@ fi
 
 _current_time=$(date +%s)
 if (( $((_current_time - _warned_time)) < 60 )); then
-	rm "$XDG_RUNTIME_DIR/lowmem-is-working"
 	exit
 fi
 
 pkill dunst # dunst leaks a bit right now; this ensures it is cleared before killing more things
 
 if (( $1 < 85 )); then # In case killing dunst saved the day
-	rm "$XDG_RUNTIME_DIR/lowmem-is-working"
 	exit
 elif (( $1 < 90 )); then
 	notify-send --urgency=critical --icon=dialog-warning "RAM Low!" "RAM is <b>$1%</b> full."
@@ -59,5 +62,3 @@ elif pgrep byond.exe; then
 else
 	notify-send --urgency=critical --icon=dialog-error "RAM Critical!" "RAM is <b>$1%</b> full.  No usual suspects left to kill.  You're screwed now, space cowboy."
 fi
-
-rm "$XDG_RUNTIME_DIR/lowmem-is-working"
