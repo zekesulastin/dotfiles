@@ -158,6 +158,7 @@ bindsym $mod+Shift+M exec "ponymix toggle > $XDG_RUNTIME_DIR/pulse/pvu; ponymix 
 
 bindsym XF86Sleep exec "systemctl suspend"
 bindsym $mod+Ctrl+r exec "[[ ! -e $XDG_RUNTIME_DIR/nokill ]] && touch $XDG_RUNTIME_DIR/nokill || rm $XDG_RUNTIME_DIR/nokill"
+bindsym $mod+Mod1+r exec "[[ ! -e $XDG_RUNTIME_DIR/lowmem-suppress ]] && touch $XDG_RUNTIME_DIR/lowmem-suppress || rm $XDG_RUNTIME_DIR/lowmem-suppress"
 # }}}
 # {{{ Window Rules
 for_window [class="Wine"] floating enable
