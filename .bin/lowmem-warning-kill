@@ -19,15 +19,14 @@ _nokill() {
 	notify-send --urgency=critical --icon=dialog-warning "$2 killed!" "We are sorry for any inconvenience this may have caused."
 }
 
-
-if (( $1 >= 85 )) && (( $1 < 90 )); then
+if  (( $1 < 90 )); then
 	pkill dunst
 	notify-send --urgency=critical --icon=dialog-warning "RAM Low!" "RAM is <b>$1%</b> full."
-elif (( $1 >= 90 )) && [[ $(pgrep firefox) ]]; then
+elif [[ $(pgrep firefox) ]]; then
 	_nokill $1 firefox
-elif (( $1 >= 90 )) && [[ $(pgrep skype) ]]; then
+elif [[ $(pgrep skype) ]]; then
 	_nokill $1 skype
-elif (( $1 >= 90 )) && [[ $(pgrep byond.exe) ]]; then
+elif [[ $(pgrep byond.exe) ]]; then
 	_nokill $1 byond.exe
 else
 	notify-send --urgency=critical --icon=dialog-error "RAM Critical!" "RAM is <b>$1%</b> full.  No usual suspects left to kill.  You're screwed now, space cowboy."
