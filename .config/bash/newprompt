@@ -169,10 +169,10 @@ _prompt_powerline() {
 	fi
 
 	export PS1="$_term_title$_ret$_host$_host_div$_user$_user_div$_git$_pwd$_pwd_div "
-	export PS2="$_prompt_src cont'd$_prompt_ligature_blk2dft$_prompt_div$prompt_none "
-	export PS3="$_prompt_src Select$_prompt_ligature_blk2dft$_prompt_div$prompt_none "
-	export PS4="$0 $LINENO: "
 }
 
+export PS2="$_prompt_src cont'd$_prompt_ligature_blk2dft$_prompt_div$prompt_none "
+export PS3="$_prompt_src Select$_prompt_ligature_blk2dft$_prompt_div$prompt_none "
+export PS4='+${BASH_SOURCE##*/}[$LINENO]: '
 PROMPT_COMMAND=_prompt_powerline
 GIT_PS1_SHOWDIRTYSTATE=yes
