@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 _nokill() {
 	printf "%d" $_current_time > "$XDG_RUNTIME_DIR/lowmem-warn-time"
 
@@ -43,8 +42,12 @@ if (( $((_current_time - _warned_time)) < 60 )); then
 	exit
 fi
 
-if  (( $1 < 90 )); then
-	pkill dunst
+pkill dunst # dunst leaks a bit right now; this ensures it is cleared before killing more things
+
+if (( $1 < 85 )); then # In case killing dunst saved the day
+	rm "$XDG_RUNTIME_DIR/lowmem-is-working"
+	exit
+elif (( $1 < 90 )); then
 	notify-send --urgency=critical --icon=dialog-warning "RAM Low!" "RAM is <b>$1%</b> full."
 	printf "%d" $_current_time > "$XDG_RUNTIME_DIR/lowmem-warn-time"
 elif pgrep firefox; then
