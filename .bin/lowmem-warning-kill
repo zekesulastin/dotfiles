@@ -1,8 +1,35 @@
 #!/usr/bin/env bash
 
+trap 'rm "$XDG_RUNTIME_DIR/lowmem-is-working"' EXIT HUP INT QUIT TERM SEGV
 touch "$XDG_RUNTIME_DIR/lowmem-is-working"
 
+if [[ ! -e "$XDG_RUNTIME_DIR/lowmem-warn-time" ]]; then
+	command date +%s > "$XDG_RUNTIME_DIR/lowmem-warn-time"
+fi
+
+_warned_time=$(<"$XDG_RUNTIME_DIR/lowmem-warn-time")
+_current_time=$(command date +%s)
+if (( $((_current_time - _warned_time)) < 60 )); then
+	exit
+fi
+
+if  (( $1 < 90 )); then
+	pkill dunst
+	notify-send --urgency=critical --icon=dialog-warning "RAM Low!" "RAM is <b>$1%</b> full."
+	printf "%d" $_current_time > "$XDG_RUNTIME_DIR/lowmem-warn-time"
+elif [[ $(pgrep firefox) ]]; then
+	_nokill $1 firefox
+elif [[ $(pgrep skype) ]]; then
+	_nokill $1 skype
+elif [[ $(pgrep byond.exe) ]]; then
+	_nokill $1 byond.exe
+else
+	notify-send --urgency=critical --icon=dialog-error "RAM Critical!" "RAM is <b>$1%</b> full.  No usual suspects left to kill.  You're screwed now, space cowboy."
+fi
+
 _nokill() {
+	printf "%d" $_current_time > "$XDG_RUNTIME_DIR/lowmem-warn-time"
+
 	_i=30
 	while (( _i > 0 )); do
 		if [[ $((_i % 2)) = 0 ]]; then
@@ -21,28 +48,3 @@ _nokill() {
 	pkill $2
 	notify-send --urgency=critical --icon=dialog-warning "$2 killed!" "We are sorry for any inconvenience this may have caused."
 }
-
-if  (( $1 < 90 )); then
-	pkill dunst
-
-	if [[ ! -e "$XDG_RUNTIME_DIR/lowmem-warn-time" ]]; then
-		command date +%s > "$XDG_RUNTIME_DIR/lowmem-warn-time"
-	fi
-	_warned_time=$(<"$XDG_RUNTIME_DIR/lowmem-warn-time")
-	_current_time=$(command date +%s)
-
-	if (( $((_current_time - _warned_time)) > 60 )); then
-		notify-send --urgency=critical --icon=dialog-warning "RAM Low!" "RAM is <b>$1%</b> full."
-		printf "%d" $_current_time > "$XDG_RUNTIME_DIR/lowmem-warn-time"
-	fi
-elif [[ $(pgrep firefox) ]]; then
-	_nokill $1 firefox
-elif [[ $(pgrep skype) ]]; then
-	_nokill $1 skype
-elif [[ $(pgrep byond.exe) ]]; then
-	_nokill $1 byond.exe
-else
-	notify-send --urgency=critical --icon=dialog-error "RAM Critical!" "RAM is <b>$1%</b> full.  No usual suspects left to kill.  You're screwed now, space cowboy."
-fi
-
-rm "$XDG_RUNTIME_DIR/lowmem-is-working"
