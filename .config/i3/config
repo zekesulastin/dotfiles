@@ -157,6 +157,7 @@ bindsym XF86AudioMute exec "ponymix toggle > $XDG_RUNTIME_DIR/pulse/pvu; ponymix
 bindsym $mod+Shift+M exec "ponymix toggle > $XDG_RUNTIME_DIR/pulse/pvu; ponymix is-muted && echo 0 > $XDG_RUNTIME_DIR/pulse/pvu"
 
 bindsym XF86Sleep exec "systemctl suspend"
+bindsym $mod+Ctrl+r exec "[[ ! -e $XDG_RUNTIME_DIR/nokill ]] && touch $XDG_RUNTIME_DIR/nokill || rm $XDG_RUNTIME_DIR/nokill"
 # }}}
 # {{{ Window Rules
 for_window [class="Wine"] floating enable
