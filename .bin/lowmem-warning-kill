@@ -4,11 +4,11 @@ trap 'rm "$XDG_RUNTIME_DIR/lowmem-is-working"' EXIT HUP INT QUIT TERM SEGV
 touch "$XDG_RUNTIME_DIR/lowmem-is-working"
 
 if [[ ! -e "$XDG_RUNTIME_DIR/lowmem-warn-time" ]]; then
-	command date +%s > "$XDG_RUNTIME_DIR/lowmem-warn-time"
+	date +%s > "$XDG_RUNTIME_DIR/lowmem-warn-time"
 fi
 
 _warned_time=$(<"$XDG_RUNTIME_DIR/lowmem-warn-time")
-_current_time=$(command date +%s)
+_current_time=$(date +%s)
 if (( $((_current_time - _warned_time)) < 60 )); then
 	exit
 fi
@@ -17,11 +17,11 @@ if  (( $1 < 90 )); then
 	pkill dunst
 	notify-send --urgency=critical --icon=dialog-warning "RAM Low!" "RAM is <b>$1%</b> full."
 	printf "%d" $_current_time > "$XDG_RUNTIME_DIR/lowmem-warn-time"
-elif [[ $(pgrep firefox) ]]; then
+elif pgrep firefox; then
 	_nokill $1 firefox
-elif [[ $(pgrep skype) ]]; then
+elif pgrep skype; then
 	_nokill $1 skype
-elif [[ $(pgrep byond.exe) ]]; then
+elif pgrep byond.exe; then
 	_nokill $1 byond.exe
 else
 	notify-send --urgency=critical --icon=dialog-error "RAM Critical!" "RAM is <b>$1%</b> full.  No usual suspects left to kill.  You're screwed now, space cowboy."
