@@ -7,3 +7,6 @@
 [submodule ".vim/bundle/vim-dm-syntax"]
 	path = .vim/bundle/vim-dm-syntax
 	url = git://github.com/wlue/vim-dm-syntax.git
+[submodule ".vim/bundle/vimroom"]
+	path = .vim/bundle/vimroom
+	url = https://github.com/mikewest/vimroom
