@@ -10,6 +10,7 @@ export WINEDLLOVERRIDES=winemenubuilder.exe=d
 export WINEARCH=win32
 export MPV_HOME="$XDG_CONFIG_HOME/mpv"
 export _mpvfifo="$XDG_RUNTIME_DIR/mpv/input"
+eval "$(TERM=linux dircolors)"
 
 if [[ $HOSTNAME == meiousei ]]; then
 	export TERMINAL=urxvtc
