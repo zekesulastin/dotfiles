@@ -14,5 +14,5 @@ unset profile
 if [ "$(fgconsole 2>/dev/null)" = "1" ]; then
 	eval $(ssh-agent -s)
 	ssh-add
-	exec startx &>/dev/null
+	exec startx
 fi
