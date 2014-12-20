@@ -7,6 +7,7 @@ green = "#4E9A06"
 bgreen = "#8AE234"
 yellow = "#C4A000"
 byellow = "#FCE94F"
+white = "#cccccc"
 bwhite = "#FFFFFF"
 
 function gradient(bot_color, mid_color, top_color, min, max, value)
@@ -49,9 +50,11 @@ function json_wrap(full_text,color,sep,bw) -- Because typing out the whole JSON 
 end
 
 function conky_init()
-	conky_parse("${wireless_bitrate wlan0}${cpu cpu0}${memperc}${mpd_title}${mpd_artist}${mpd_status}${mpd_name}")
-	conky_parse("${if_up eth0}${endif}${if_up wlan0}${endif}")
+	lan_interface = os.getenv("LAN_INTERFACE")
+	wlan_interface = os.getenv("WLAN_INTERFACE")
 	xdg_runtime_dir = os.getenv("XDG_RUNTIME_DIR")
+	conky_parse("${wireless_bitrate wlan0}${cpu cpu0}${memperc}${mpd_title}${mpd_artist}${mpd_status}${mpd_name}")
+	conky_parse("${if_up "..lan_interface.."}${endif}${if_up "..wlan_interface.."}${endif}")
 end
 
 function conky_mpd()
@@ -76,14 +79,14 @@ function conky_mpd()
 	elseif mpd_status == "MPD not responding" then
 		return json_wrap("M",bgrey,0,0)
 	else
-		return json_wrap("M ",red,0,0) ..","..json_wrap(mpd_songinfo,bgrey,0,0)
+		return json_wrap("M ",red,0,0)..","..json_wrap(mpd_songinfo,bgrey,0,0)
 	end
 end
 
 function conky_net()
-	eth_status = conky_parse("${if_up eth0}E${endif}")
-	wifi_status = conky_parse("${if_up wlan0}W${endif}")
-	wifi_bitrate = tonumber(string.sub(conky_parse("${wireless_bitrate wlan0}"),1,-5))
+	eth_status = conky_parse("${if_up "..lan_interface.."}E${endif}")
+	wifi_status = conky_parse("${if_up "..wlan_interface.."}W${endif}")
+	wifi_bitrate = tonumber(string.sub(conky_parse("${wireless_bitrate "..wlan_interface.."}"),1,-5))
 
 	if eth_status == "E" then
 		return json_wrap("E",green,0,0)

@@ -35,3 +35,14 @@ case $HOSTNAME in
 		export TWITCH_OFFSET="+1920+0"
 		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_10.1.analog-stereo.monitor" ;;
 esac
+
+while read _interface; do
+	case ${_interface:0:1} in
+		e )
+			[[ -z $LAN_INTERFACE ]] && export LAN_INTERFACE="$_interface" ;;
+		w )
+			[[ -z $WLAN_INTERFACE ]] && export WLAN_INTERFACE="$_interface" ;;
+		* )
+			;;
+	esac
+done < <(ls /sys/class/net | grep -v lo)
