@@ -5,7 +5,6 @@
 _xinithost="$(hostname)" #TIL $HOSTNAME is a bashism
 
 if [ "$_xinithost" = "tsukikage" ]; then
-	sudo systemctl start asd.service &
 	nvidia-settings -l
 fi
 
