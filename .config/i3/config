@@ -18,6 +18,7 @@ font pango:Monospace 10
 
 # Border style
 new_window 1pixel
+gaps inner 10
 
 # Client colors			border	backgr.	text	indicator
 #client.focused			$dblue	$dblue	$bgrey	$blue
