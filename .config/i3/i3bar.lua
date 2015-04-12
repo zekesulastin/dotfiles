@@ -63,10 +63,10 @@ function conky_mpd()
 	mpd_title	= conky_parse("${mpd_title}")
 	mpd_name	= conky_parse("${mpd_name}")
 
-	if mpd_name ~= "" then
-		mpd_artist = mpd_name..": "
-	else
+	if mpd_artist ~= "" then
 		mpd_artist = mpd_artist.." - "
+	else
+		mpd_artist = mpd_name..": "
 	end
 
 	mpd_songinfo = string.gsub(mpd_artist..mpd_title,'\\','\\\\')
