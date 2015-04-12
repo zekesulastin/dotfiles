@@ -3,7 +3,6 @@ export PAGER=less
 export MANPAGER=vimpager
 export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH="$HOME/.bin":"$PATH"
-export MPD_HOST=hoshiakari
 export GTK2_RC_FILES=$HOME/.config/gtk-2.0/gtkrc-2.0
 export SDL_JOYSTICK_DEVICE=/dev/input/js0
 export WINEDLLOVERRIDES=winemenubuilder.exe=d
@@ -30,10 +29,12 @@ esac
 case $HOSTNAME in
 	tsukikage )
 		export TWITCH_OFFSET="+1920+0"
-		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_1b.0.analog-stereo.monitor" ;;
+		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_1b.0.analog-stereo.monitor"
+		export MPD_HOST=localhost ;;
 	* )
 		export TWITCH_OFFSET="+1920+0"
-		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_10.1.analog-stereo.monitor" ;;
+		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_10.1.analog-stereo.monitor"
+		export MPD_HOST=hoshiakari ;;
 esac
 
 while read _interface; do

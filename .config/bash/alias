@@ -46,6 +46,10 @@ powerdown () {
 	esac
 }
 
-if [[ "$HOSTNAME" != "hoshiakari" ]]; then
-	alias ncmpcpp="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp' 2>/dev/null" ;
-fi
+case "$HOSTNAME" in
+	"hoshiakari" | "tsukikage" )
+		alias ncmpcpp="ncmpcpp --host=/var/lib/mpd/socket"
+		;;
+	* )
+		alias ncmpcpp="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp' 2>/dev/null" ;;
+esac
