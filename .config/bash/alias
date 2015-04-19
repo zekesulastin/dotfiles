@@ -34,12 +34,11 @@ alias mpn="mpv -ao pulse:naiyuusei"
 
 powerdown () {
 	case "$HOSTNAME" in
-		"tsukikage" | "naiyuusei" )
-			pkill firefox
+		"tsukikage" | "hoshiakari" )
 			poweroff ;;
 		"meiousei" )
 			sudo shutdown -P now ;;
-		"hoshiakari" )
+		"naiyuusei" )
 			echo >&2 "powerdown: this is your SERVER, br0" && return 255;;
 		* )
 			echo >&2 "powerdown: no defined behavior for this host" && return 1;;
@@ -47,9 +46,9 @@ powerdown () {
 }
 
 case "$HOSTNAME" in
-	"hoshiakari" | "tsukikage" )
-		alias ncmpcpp="ncmpcpp --host=/var/lib/mpd/socket"
-		;;
+	"meiousei" )
+		alias ncmpcpp="ssh naiyuusei -t 'LC_ALL=en_US.UTF-8 ncmpcpp' 2>/dev/null" ;;
+
 	* )
-		alias ncmpcpp="ssh hoshiakari -t 'LC_ALL=en_US.UTF-8 ncmpcpp' 2>/dev/null" ;;
+		alias ncmpcpp="ncmpcpp --host=/var/lib/mpd/socket"	;;
 esac
