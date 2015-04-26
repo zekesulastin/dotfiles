@@ -1,6 +1,6 @@
 " .vimrc!  vim settings!
 
-let $PYTHONPATH="/usr/lib/python3.3/site-packages"
+let $PYTHONPATH="/usr/lib/python3.4/site-packages"
 
 set nocompatible
 set backspace=indent,eol,start
