@@ -73,7 +73,7 @@ function conky_init()
 	lan_interface = os.getenv("LAN_INTERFACE")
 	wlan_interface = os.getenv("WLAN_INTERFACE")
 	xdg_runtime_dir = os.getenv("XDG_RUNTIME_DIR")
-	conky_parse("${wireless_bitrate wlan0}${cpu cpu0}${memperc}${mpd_title}${mpd_artist}${mpd_status}${mpd_name}")
+	conky_parse("${wireless_link_qual_perc .."..wlan_interface.."}${cpu cpu0}${memperc}${mpd_title}${mpd_artist}${mpd_status}${mpd_name}")
 	conky_parse("${if_up "..lan_interface.."}${endif}${if_up "..wlan_interface.."}${endif}")
 end
 
@@ -106,12 +106,12 @@ end
 function conky_net()
 	eth_status = conky_parse("${if_up "..lan_interface.."}E${endif}")
 	wifi_status = conky_parse("${if_up "..wlan_interface.."}W${endif}")
-	wifi_bitrate = tonumber(string.sub(conky_parse("${wireless_bitrate "..wlan_interface.."}"),1,-5))
+	wifi_qual = tonumber(conky_parse("${wireless_link_qual_perc "..wlan_interface.."}"))
 
 	if eth_status == "E" then
 		return json_wrap("E",green,0,0)
 	elseif wifi_status == "W" then
-		return json_wrap("W",gradient(red,yellow,green,0,54,wifi_bitrate),0,0)
+		return json_wrap("W",gyr(wifi_qual),0,0)
 	else
 		return json_wrap("N",bgrey,0,0)
 	end
