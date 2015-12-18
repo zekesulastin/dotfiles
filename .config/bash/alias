@@ -20,7 +20,7 @@ alias fluidstop="pkill fluidsynth"
 alias midiplay="aplaymidi --port 128:0"
 alias mpt="mpv -ao pulse:tsukikage"
 alias mpm="mpv -ao pulse:meiousei"
-alias mpn="mpv -ao pulse:naiyuusei"
+alias mpa="mpv --no-audio-display"
 ..() {
 	local _dirs=1
 	if [[ $1 -ge 1 ]]; then
