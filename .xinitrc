@@ -13,7 +13,7 @@ xset fp rehash
 xset b off &
 xrdb -merge "$XDG_CONFIG_HOME/Xresources"
 xrandr --dpi 96 &
-setxkbmap -option caps:swapescape &
+setxkbmap -option caps:escape &
 
 if [  "$_xinithost" = "meiousei" ]; then
 	urxvtd -q -o -f &
