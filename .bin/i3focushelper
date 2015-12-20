@@ -2,7 +2,7 @@
 
 case $1 in
 	hoshiakari )
-		i3-msg [window_role="hoshiakari"] focus
+		i3-msg [window_role="naiyuusei"] focus
 		i3-msg mode "default" ;;
 	browser )
 		i3-msg [class="Firefox"] focus
