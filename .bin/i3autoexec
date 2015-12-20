@@ -29,4 +29,5 @@ if [[ $HOSTNAME = "tsukikage" ]]; then
 	if xrandr | grep -q "HDMI1 connected"; then
 		xrandr --output HDMI1 --mode 1920x1200 --pos 1920x0 --primary --output eDP1 --mode 1920x1080 --pos 0x0
 	fi
+	nitrogen --restore &
 fi
