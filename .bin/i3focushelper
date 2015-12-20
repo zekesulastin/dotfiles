@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case $1 in
-	hoshiakari )
+	naiyuusei )
 		i3-msg [window_role="naiyuusei"] focus
 		i3-msg mode "default" ;;
 	browser )
