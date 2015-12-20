@@ -101,7 +101,7 @@ bindsym $mod+r mode "resize"
 
 mode "appfocus" {
 		bindsym w exec "i3focushelper browser"
-		bindsym h exec "i3focushelper naiyuusei"
+		bindsym n exec "i3focushelper naiyuusei"
 		bindsym s exec "i3focushelper Skype"
 		bindsym v exec "i3focushelper mpv"
 		bindsym m exec "i3focushelper ncmpcpp"
