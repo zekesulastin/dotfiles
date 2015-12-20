@@ -13,7 +13,7 @@ set $black	#000000
 set $white	#ffffff
 set $red	#cc0000
 # }}}
-# {{{ Font and Theming
+# {{{ Font and Layouts
 font pango:Monospace 10
 
 # Border style
@@ -25,6 +25,9 @@ gaps inner 10
 #client.focused_inactive	$grey	$grey	$bgrey	$grey
 #client.unfocused		$dgrey	$dgrey	$bgrey	$bgrey
 #client.urgent			$red	$red	$white	$white
+
+workspace 1 output HDMI1
+workspace 6 output eDP1
 # }}}
 # {{{ Window Manipulation
 floating_modifier $mod
@@ -101,12 +104,13 @@ mode "appfocus" {
 		bindsym h exec "i3focushelper hoshiakari"
 		bindsym s exec "i3focushelper Skype"
 		bindsym v exec "i3focushelper mpv"
+		bindsym m exec "i3focushelper ncmpcpp"
 
 		bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 
-bindsym $mod+Shift+F mode "appfocus"
+bindsym $mod+Shift+A mode "appfocus"
 # }}}
 # {{{ Status Bar
 bar {

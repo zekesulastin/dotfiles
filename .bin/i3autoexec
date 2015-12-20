@@ -27,7 +27,22 @@ fi
 
 if [[ $HOSTNAME = "tsukikage" ]]; then
 	if xrandr | grep -q "HDMI1 connected"; then
-		xrandr --output HDMI1 --mode 1920x1200 --pos 1920x0 --primary --output eDP1 --mode 1920x1080 --pos 0x0
+		i3-msg exec 'xrandr --output HDMI1 --mode 1920x1200 --pos 1920x0 --primary --output eDP1 --mode 1920x1080 --pos 0x0'
+		numlockx &
 	fi
-	nitrogen --restore &
+
+	i3-msg workspace 6
+	i3-msg append_layout /home/zekesulastin/.config/i3/workspace-6
+	i3-msg workspace 1
+	i3-msg append_layout /home/zekesulastin/.config/i3/workspace-1
+	i3-msg exec 'nitrogen --restore'
+
+	i3-msg exec 'zekes-sensible-browser -f'
+	i3-msg exec 'termite --role="initial"'
+	i3-msg exec pavucontrol
+	i3-msg exec teamspeak3
+	i3-msg exec 'pkill pavucontrol'
+	i3-msg exec 'termite --role="naiyuusei" --exec="ssh naiyuusei"'
+	i3-msg exec skype
+	i3-msg '[Class="Firefox"] focus'
 fi
