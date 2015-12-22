@@ -292,7 +292,7 @@ visualizer_in_stereo = no
 #
 #playlist_shorten_total_times = no
 #
-playlist_separate_albums = yes
+#playlist_separate_albums = no
 #
 ##
 ## Note: Possible display modes: classic, columns.
