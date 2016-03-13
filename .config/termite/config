@@ -16,10 +16,6 @@ search_wrap = true
 #geometry = 640x480
 #term = xterm-termite
 
-# 0.0: opaque, 1.0: transparent
-transparency = 0.25
-pseudo_transparency = true
-
 # "system", "on" or "off"
 cursor_blink = off
 
@@ -37,7 +33,7 @@ cursor_shape = block
 foreground = #aaaaaa
 foreground_bold = #cccccc
 #foreground_dim = #888888
-background = #000000
+background = rgba(00, 00, 00, .75)
 #cursor = #dcdccc
 
 #if unset, will reverse foreground and background
