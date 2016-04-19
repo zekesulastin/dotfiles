@@ -15,12 +15,7 @@ xrdb -merge "$XDG_CONFIG_HOME/Xresources"
 xrandr --dpi 96 &
 setxkbmap -option caps:escape &
 
-if [  "$_xinithost" = "meiousei" ]; then
-	urxvtd -q -o -f &
-	start-pulseaudio-x11 -n --file="$XDG_CONFIG_HOME/pulse/meiousei.pa"
-else
-	start-pulseaudio-x11
-fi
+start-pulseaudio-x11
 
 mkdir "$XDG_RUNTIME_DIR/mpv"
 mkfifo "$XDG_RUNTIME_DIR/mpv/input"
