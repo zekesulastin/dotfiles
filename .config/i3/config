@@ -114,12 +114,13 @@ bindsym $mod+Shift+A mode "appfocus"
 # }}}
 # {{{ Status Bar
 bar {
+	i3bar_command i3bar -t
 	status_command conkyi3bar
 #	tray_output DVI-D-0
 	position top
 	font pango:Monospace 10
 	colors {
-		background $black
+		background #000000bf
 		statusline $bgrey
 		separator $dgrey
 

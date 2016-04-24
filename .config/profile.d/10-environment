@@ -11,11 +11,7 @@ export MPV_HOME="$XDG_CONFIG_HOME/mpv"
 export _mpvfifo="$XDG_RUNTIME_DIR/mpv/input"
 eval "$(TERM=linux dircolors)"
 
-if [[ $HOSTNAME == meiousei ]]; then
-	export TERMINAL=urxvtc
-else
-	export TERMINAL=termite
-fi
+export TERMINAL=termite
 
 case $HOSTNAME in
 	hoshiakari )
@@ -32,9 +28,7 @@ case $HOSTNAME in
 		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_1b.0.analog-stereo.monitor"
 		export MPD_HOST=localhost ;;
 	* )
-		export TWITCH_OFFSET="+1920+0"
-		export TWITCH_INPUT_SINK="alsa_output.pci-0000_00_10.1.analog-stereo.monitor"
-		export MPD_HOST=hoshiakari ;;
+		export MPD_HOST=$HOSTNAME ;;
 esac
 
 while read _interface; do
