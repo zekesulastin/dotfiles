@@ -28,7 +28,7 @@ fi
 if [[ $HOSTNAME = "tsukikage" ]]; then
 	local __xrandr=$(xrandr)
 	if echo $__xrandr | grep -q "HDMI1 connected"; then
-		i3-msg exec 'xrandr --output HDMI1 --mode 1920x1200 --pos 1920x0 --primary --output eDP1 --mode 1920x1080 --pos 0x0'
+		i3-msg exec 'xrandr --output HDMI1 --right-of eDP1 --primary'
 	fi
 fi
 
