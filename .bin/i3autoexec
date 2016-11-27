@@ -26,26 +26,11 @@ if [[ $HOSTNAME = "naiyuusei" ]]; then
 fi
 
 if [[ $HOSTNAME = "tsukikage" ]]; then
-	local __xrandr=$(xrandr)
-	if echo $__xrandr | grep -q "HDMI1 connected"; then
-		i3-msg exec 'xrandr --output HDMI1 --right-of eDP1 --primary'
+	local __xrandr=$(xrandr | grep -o "HDMI1 connected")
+	if [[ $__xrandr = "HDMI1 connected" ]]; then
+		i3-msg exec 'xrandr --output eDP1 --off --output DP1 --left-of HDMI1 --output HDMI1 --primary'
 	fi
-fi
-
+	sleep 1
 	numlockx &
-
-	i3-msg workspace 6
-	i3-msg append_layout /home/zekesulastin/.config/i3/workspace-6
-	i3-msg workspace 1
-	i3-msg append_layout /home/zekesulastin/.config/i3/workspace-1
 	i3-msg exec 'nitrogen --restore'
-
-	i3-msg exec 'zekes-sensible-browser -f'
-	i3-msg exec 'termite --role="initial"'
-	i3-msg exec pavucontrol
-	i3-msg exec teamspeak3
-	i3-msg exec 'pkill pavucontrol'
-	i3-msg exec 'termite --role="naiyuusei" --exec="ssh naiyuusei"'
-	i3-msg exec skype
-	i3-msg '[Class="Firefox"] focus'
 fi
